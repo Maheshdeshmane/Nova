@@ -1,35 +1,24 @@
 ﻿using System.Collections.Generic;
-using System.Web.Mvc;
 using Nova.Models;
-using Nova.Services;
 using System.Data.SqlClient;
 using System.Data;
 using Nova.common;
-using System.Linq;
 
-namespace Nova.Controllers
+namespace Nova.Services
 {
-    public class HomeController : Controller
+    public static class commonDbServices
     {
-        // GET: Home
-        public ActionResult Index()
-        {
-            BaseRequest _request = new BaseRequest();
-            List<SelectListItem> catNames = new List<SelectListItem>();
-            List<Category> catList = GetCatgoryList();
-            catList.ForEach(x => catNames.Add(new SelectListItem { Text = x.CatgorieName, Value = x.CatgorieId.ToString() }));
-            _request.category = catNames;
-            _request.subCategory = new List<SelectListItem>();
-            return View(_request);
-        }
 
+        public static string DBConnection = "data source=.\\SQLExpress;initial catalog=DisCheckOut;integrated security=True;";
 
-
-
-        public List<Category> GetCatgoryList()
+        /// <summary>
+        /// Return the list of category
+        /// </summary>
+        /// <returns></returns>
+        public static List<Category> GetCatgoryList()
         {
             List<Category> onlineShopCategory = new List<Category>();
-            SqlConnection con = new SqlConnection("data source=.\\SQLExpress;initial catalog=DisCheckOut;integrated security=True;");
+            SqlConnection con = new SqlConnection(DBConnection);
             var cmd = new SqlCommand("dbo.[getCatgoryList]", con);
             cmd.CommandType = CommandType.StoredProcedure;
             try
@@ -48,10 +37,15 @@ namespace Nova.Controllers
             return onlineShopCategory;
         }
 
-        public List<SubCatgory> GetSubCatgoryList(int catId)
+        /// <summary>
+        /// Get the sub category list based on department id
+        /// </summary>
+        /// <param name="catId">department id</param>
+        /// <returns></returns>
+        public static List<SubCatgory> GetSubCatgoryList(int catId)
         {
             List<SubCatgory> onlineShopSubCategory = new List<SubCatgory>();
-            SqlConnection con = new SqlConnection("data source=.\\SQLExpress;initial catalog=DisCheckOut;integrated security=True;");
+            SqlConnection con = new SqlConnection(DBConnection);
             var cmd = new SqlCommand("dbo.[getSubCatgoryList]", con);
             cmd.CommandType = CommandType.StoredProcedure;
             cmd.Parameters.Add(new SqlParameter("@catId", SqlDbType.Int)).Value = catId;//Pass the parameter for lookingAtLat
@@ -70,18 +64,5 @@ namespace Nova.Controllers
             }
             return onlineShopSubCategory;
         }
-
-        //Action result for ajax call
-        [HttpPost]
-        public ActionResult GetSubCatgoryByCategoryId(int stateid)
-        {
-            List<SubCatgory> objCat = new List<SubCatgory>();
-            List<SubCatgory> subCatgory = GetSubCatgoryList(stateid);
-            objCat = subCatgory.Where(m => m.CatgorieId == stateid).ToList();
-            SelectList obgcity = new SelectList(objCat, "SubCatgorieId", "SubCatgorieName", 0);
-            return Json(obgcity);
-        }
-
-
     }
 }
