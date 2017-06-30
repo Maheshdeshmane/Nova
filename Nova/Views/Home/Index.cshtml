@@ -11,6 +11,8 @@
 <div class="container">
     <div class="row">
         <div class="col-sm-3">
+@using (Html.BeginForm("Search", "Home", FormMethod.Post))
+{
             <form>
                 <div class="well">
                     
@@ -36,7 +38,7 @@
                         <div class="row">Sort By:</div>
                         <div class="row row row-m-t">
                             @Html.DropDownListFor(model => model.lookingBy,
-             new SelectList(Enum.GetValues(typeof(SortBy))), new { @class = "form-control" })
+new SelectList(Enum.GetValues(typeof(SortBy))), new { @class = "form-control" })
                         </div>
                         <div class="row">Search Till KM:</div>
                         <div class="row row row-m-t">
@@ -52,6 +54,113 @@
                 </div>
 
             </form>
+}
+        </div>
+
+        <div class="col-sm-9">
+            <div id="banner">                
+                    <div class="well-sm">
+                        <div class="row">
+                            <div class="content-box">
+                                <div class="row">
+                                    <div class="col-md-9">
+                                        <h4>Style & Fashion</h4>
+                                    </div>                                    
+                                </div>
+                                <div id="carousel-example-generic" class="carousel slide hidden-xs" data-ride="carousel">
+                                    <!-- Wrapper for slides -->
+                                    <div class="carousel-inner">
+                                        <div class="item active">
+                                            <div class="row">
+                                                <div class="col-sm-4">
+                                                    <div class="col-item">
+                                                        <div class="photo">
+                                                            <img src="http://placehold.it/350x260" class="img-responsive" alt="a" />
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="col-sm-4">
+                                                    <div class="col-item">
+                                                        <div class="photo">
+                                                            <img src="http://placehold.it/350x260" class="img-responsive" alt="a" />
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="col-sm-4">
+                                                    <div class="col-item">
+                                                        <div class="photo">
+                                                            <img src="http://placehold.it/350x260" class="img-responsive" alt="a" />
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="item">
+
+                                            <div class="row">
+                                                <div class="col-sm-4">
+                                                    <div class="cuadro_intro_hover " style="background-color:#cccccc;">
+                                                        <p style="text-align:center;">
+                                                            <img src="http://static.tumblr.com/166ab215c9a0bb3ba1b98e810652c3db/pjmcbps/OHEmr2kqz/tumblr_static_dsc_0298lol.jpg" class="img-responsive" alt="">
+                                                        </p>
+                                                        <div class="caption">
+                                                            <div class="blur"></div>
+                                                            <div class="caption-text">
+                                                                <h3 style="border-top:2px solid white; border-bottom:2px solid white; padding:10px;">Men Clothing</h3>
+                                                                <p>Explorer the new brand and style with 50% Discount</p>
+                                                                <a class="btn btn-default" href="https://plus.google.com/u/0/100371904807783155711/posts" target="_blank"><span class="glyphicon glyphicon-plus"> INFO</span></a>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+
+                                                </div>
+                                                <div class="col-sm-4">
+                                                    <div class="cuadro_intro_hover " style="background-color:#cccccc;">
+                                                        <p style="text-align:center;">
+                                                            <img src="http://pixel.brit.co/wp-content/uploads/2014/08/724.jpg" class="img-responsive" alt="">
+                                                        </p>
+                                                        <div class="caption">
+                                                            <div class="blur"></div>
+                                                            <div class="caption-text">
+                                                                <h3 style="border-top:2px solid white; border-bottom:2px solid white; padding:10px;">Mehra</h3>
+                                                                <p>Loren ipsum dolor si amet ipsum dolor si amet ipsum dolor...</p>
+                                                                <a class=" btn btn-default" href="https://plus.google.com/u/0/100371904807783155711/posts" target="_blank"><span class="glyphicon glyphicon-plus"> INFO</span></a>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+
+                                                </div>
+                                                <div class="col-sm-4">
+                                                    <div class="cuadro_intro_hover" style="background-color:#cccccc;">
+                                                        <p style="text-align:center;">
+                                                            <img src="http://www.photoaxe.com/wp-content/uploads/2014/11/food1.jpg" class="img-responsive" alt="">
+                                                        </p>
+                                                        <div class="caption">
+                                                            <div class="blur"></div>
+                                                            <div class="caption-text">
+                                                                <h3 style="border-top:2px solid white; border-bottom:2px solid white; padding:10px;">Maan Sab</h3>
+                                                                <p>Loren ipsum dolor si amet ipsum dolor si amet ipsum dolor...</p>
+                                                                <a class=" btn btn-default" href="https://plus.google.com/u/0/100371904807783155711/posts" target="_blank"><span class="glyphicon glyphicon-plus"> INFO</span></a>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+
+                                                </div>
+                                            </div>
+
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="controls pull-right hidden-xs">
+                                    <a class="left glyphicon glyphicon-chevron-left btn btn-primary btn-xs" href="#carousel-example-generic"
+                                       data-slide="prev"></a><a class="right glyphicon glyphicon-chevron-right btn btn-primary btn-xs" href="#carousel-example-generic"
+                                                                data-slide="next"></a>
+                                </div>
+                            </div>
+                        </div>    
+                        </div>                               
+            </div>
         </div>
     </div>
 </div>
