@@ -45,13 +45,12 @@ img {
 
 .h3, h3 {
   font-family: 'Raleway', sans-serif;
-  font-size: 24px;
+  font-size: 18px;
   text-transform: uppercase;
 }
 .btn-default {
   background: transparent none repeat scroll 0 0;
-  border: 2px solid #fff;
-  border-radius: 50px;
+  border: 2px solid #fff;  
   text-shadow: 0 1px 0 #fff;
   font-family: 'Raleway', sans-serif;
 }
@@ -63,7 +62,7 @@ img {
   width: 91%;
 }
 .btn-default:focus, .btn-default:hover {
-  background-color: red;
+  background-color: transparent;
   background-position: 0 -15px;
 }
 	
@@ -123,3 +122,16 @@ img {
     -ms-border-radius: 3px;
     border-radius: 3px;
 }
+
+    .content-tittle-box{
+    background: #b6ff00;
+    padding: 15px;
+    -webkit-box-shadow: 0px 0px 4px rgba(0,0,0,0.1);
+    -moz-box-shadow: 0px 0px 4px rgba(0,0,0,0.1);
+    box-shadow: 0px 0px 4px rgba(0,0,0,0.1);
+    -webkit-border-radius: 3px;
+    -moz-border-radius: 3px;
+    -ms-border-radius: 3px;
+    border-radius: 3px;
+}
+
