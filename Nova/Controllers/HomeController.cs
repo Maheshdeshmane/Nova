@@ -82,6 +82,42 @@ namespace Nova.Controllers
             return Json(obgcity);
         }
 
+        public ActionResult GetDiscountDetailsWithoutLocation(int catId, int subCatId, string searchText)
+        {
 
+            List<DiscountDetailsModel> discountDetails = new List<DiscountDetailsModel>();
+
+            SqlConnection con = new SqlConnection("data source=.\\SQLExpress;initial catalog=DisCheckOut;integrated security=True;");
+            var cmd = new SqlCommand("dbo.[getDiscountCheckWithoutLocation]", con);
+            cmd.CommandType = CommandType.StoredProcedure;
+
+                cmd.Parameters.Add(new SqlParameter("@DepartmentId", SqlDbType.Int)).Value = catId;//Pass the parameter for lookingAtLat }
+            
+
+            cmd.Parameters.Add(new SqlParameter("@SubDepartmentId", SqlDbType.Int)).Value = subCatId;//Pass the parameter for lookingAtLat }
+            
+
+            
+            
+                cmd.Parameters.Add(new SqlParameter("@SEARCHTEXT", SqlDbType.VarChar)).Value = string.IsNullOrEmpty(searchText)?string.Empty:searchText;//Pass the parameter for lookingAtLat }
+            
+
+            try
+            {
+                if (con.State != ConnectionState.Open)
+                    con.Open();
+
+                discountDetails = new ReflectionPopulator<DiscountDetailsModel>().CreateList(cmd.ExecuteReader());
+
+            }
+            finally
+            {
+                if (con.State != ConnectionState.Closed)
+                    con.Close();
+            }
+
+            return Json(discountDetails);
+
+        }
     }
 }
