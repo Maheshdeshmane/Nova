@@ -1,7 +1,11 @@
 ﻿@model Nova.Models.BaseRequest
+@using Nova.Models
 @using Nova.common
 @{
     ViewBag.Title = "Index";
+    var selectedSubCategoryList = Session["SelectedSubCategoryList"] as List<SubCatgory>;
+    var selectedCategory = Session["SelectedCategory"] as string;
+    var selectedSubCategory = Session["SelectedSubCategory"] as string;
 }
 
 <link href="~/Content/home/index.css" rel="stylesheet" />
@@ -12,9 +16,7 @@
 <div class="container">
     <div class="row">
         <div class="col-sm-3">
-@using (Html.BeginForm("Search", "Home", FormMethod.Post))
-{
-            <form>
+
                 <div class="well">
                     
                     <h3 class="text-bold text-primary">Discount Finder</h3>
@@ -26,7 +28,19 @@
                             @Html.DropDownListFor(model => model.selectedCategory, Model.category, "Department", new { @class = "form-control", @onchange = "FillSubCatgory(this)" })
                         </div>
                         <div class="row row-m-t">
-                            @Html.DropDownListFor(model => model.selectedSubCategory, Model.subCategory, "Sub Category", new { @class = "form-control" })
+                            @if (selectedSubCategoryList != null)
+                            {
+                                <select class="form-control" id="selectedSubCategory" name="selectedSubCategory">
+                                    @foreach (var item in selectedSubCategoryList)
+                                    {
+                                        <option value="@item.SubCatgorieId">@item.SubCatgorieName</option>
+                                    }
+                                </select>
+                            }
+                            else
+                            {
+                                    @Html.DropDownListFor(model => model.selectedSubCategory, Model.subCategory, "Sub Category", new { @class = "form-control" })
+                             }
                         </div>
                         <div class="row">Locality</div>
                         <div class="row row row-m-t">
@@ -39,7 +53,7 @@
                         <div class="row">Sort By:</div>
                         <div class="row row row-m-t">
                             @Html.DropDownListFor(model => model.lookingBy,
-new SelectList(Enum.GetValues(typeof(SortBy))), new { @class = "form-control" })
+                                    new SelectList(Enum.GetValues(typeof(SortBy))), new { @class = "form-control" })
                         </div>
                         <div class="row">Search Till KM:</div>
                         <div class="row row row-m-t">
@@ -47,15 +61,15 @@ new SelectList(Enum.GetValues(typeof(SortBy))), new { @class = "form-control" })
                         </div>
                         <hr>
                         <div class="row">
-                            <button type="submit" id="btnSearch" class="btn btn-success btn-block ">Search</button>
+                            <button  id="btnSearch" class="btn btn-success btn-block " onclick="searchDiscount()">Search</button>
                         </div>
                         @Html.HiddenFor(model => model.lookingAtLat)
                         @Html.HiddenFor(model => model.lookingAtLng)
                     
                 </div>
 
-            </form>
-}
+
+
         </div>
 
         <div class="col-sm-9">
@@ -236,7 +250,7 @@ new SelectList(Enum.GetValues(typeof(SortBy))), new { @class = "form-control" })
 
                                 <div class="controls pull-left hidden-xs">
                                     <a class="left glyphicon glyphicon-chevron-left btn btn-primary btn-xs" href="#carousel-fashion"
-                                       data-slide="prev"></a>
+                                       data-slide="prev"></a>                                    
                                 </div>
                                     <div class="controls pull-right hidden-xs">
                                         <a class="right glyphicon glyphicon-chevron-right btn btn-primary btn-xs" href="#carousel-fashion"
@@ -379,6 +393,8 @@ new SelectList(Enum.GetValues(typeof(SortBy))), new { @class = "form-control" })
                 </div>    
                  
             </div>
+
+            <div id="discount"></div>
         </div>
     </div>
 </div>
@@ -439,28 +455,35 @@ new SelectList(Enum.GetValues(typeof(SortBy))), new { @class = "form-control" })
         });
     }
 
+    String.format = function() {
+    // The string containing the format items (e.g. "{0}")
+    // will and always has to be the first argument.
+    var theString = arguments[0];
+
+    // start with the second argument (i = 1)
+    for (var i = 1; i < arguments.length; i++) {
+        // "gm" = RegEx options for Global search (more than one instance)
+        // and for Multiline search
+        var regEx = new RegExp("\\{" + (i - 1) + "\\}", "gm");
+        theString = theString.replace(regEx, arguments[i]);
+    }
+
+    return theString;
+    }
+
 
     function getDiscount(obj)
     {
-        var url = "/Home/GetDiscountDetailsWithoutLocation/";
-        
+        var url = "/Home/ExoplereSearch/";
+        document.getElementById("banner").style.display = "none";
         $.ajax({
             url: url,
             data: { catId: obj.getAttribute('data-id'), subCatId: obj.getAttribute('data-subId'), searchText:'' },
             cache: false,
             type: "POST",
             success: function (data) {
-                var markup = "<div class=\"col-sm-9\">";
-                markup += "<div class=\"row\">";
-                if (data.length == 0) markup += "Sorry No Records Found";
-                for (var x = 0; x < data.length; x++) {
-                    markup += "<div class=\"col-sm-6 col-md-4 col-lg-3 mt-4\">";
-                    markup += "<div class=\"card card-inverse card-info\">";
-                    
-                }
-                markup += "</div>";
-                markup += "</div>";
-                $("#selectedSubCategory").html(markup).show();
+
+                $("#discount").html(data);
             },
             error: function (reponse) {
                 alert("error : " + reponse);
@@ -472,5 +495,34 @@ new SelectList(Enum.GetValues(typeof(SortBy))), new { @class = "form-control" })
 
     function showModel() {
         document.getElementById("myModel").showModal();
+    }
+
+    function searchDiscount(){
+
+        var categrory = document.getElementById("selectedCategory").value;
+        var subCategory = document.getElementById("selectedSubCategory").value;
+        var lookingAt = document.getElementById("lookingAt").value;
+        var lookingAtLat = document.getElementById("lookingAtLat").value;
+        var lookingAtLng = document.getElementById("lookingAtLng").value;
+        var lookingFor = document.getElementById("lookingFor").value;
+        var lookingBy = document.getElementById("lookingBy").value;
+        var lookingTillDistance = document.getElementById("lookingTillDistance").value;
+
+
+        var url = "/Home/Search/";
+        document.getElementById("banner").style.display = "none";
+        $.ajax({
+            url: url,
+            data: {categrory: categrory, subCategory: subCategory, lookingAt: lookingAt, lookingAtLat: lookingAtLat, lookingAtLng: lookingAtLng, lookingFor: lookingFor, lookingBy: lookingBy, lookingTillDistance: lookingTillDistance            },
+            cache: false,
+            type: "POST",
+            success: function (data) {
+
+                $("#discount").html(data);
+            },
+            error: function (reponse) {
+                alert("error : " + reponse);
+            }
+        });
     }
 </script>
