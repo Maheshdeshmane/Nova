@@ -7,6 +7,7 @@ using System.Data;
 using Nova.common;
 using System.Linq;
 using System.Text;
+using System;
 
 namespace Nova.Controllers
 {
@@ -20,6 +21,7 @@ namespace Nova.Controllers
             List<Category> catList = GetCatgoryList();
             List<SubCatgory> objCat = new List<SubCatgory>();
             List<SubCatgory> subCatgory = GetSubCatgoryList();
+            int searchTill = 20;
             if (Session.IsNewSession)
             {
                 Session["CategoryList"] = catList;
@@ -34,8 +36,9 @@ namespace Nova.Controllers
                 Session["LocalityLong"] = string.Empty;
             }
             else {
+                Int32.TryParse(Session["SearchTillKm"].ToString(), out searchTill);
                 _request.lookingAt = Session["Locality"] as string;
-                _request.lookingTillDistance = Session["SearchTillKm"]!=null?(int)Session["SearchTillKm"]:20;
+                _request.lookingTillDistance = searchTill;
                 _request.lookingBy = Session["SortBy"] as string;
                 _request.lookingFor= Session["Keyword"] as string;
                 _request.lookingAt= Session["Locality"] as string;
@@ -66,8 +69,8 @@ namespace Nova.Controllers
         public ActionResult Search(int categrory, int subCategory, string lookingAt, string lookingAtLat, string lookingAtLng, string lookingFor, string lookingBy, string lookingTillDistance)
         {
 
-            Session["SelectedCategory"] = categrory;
-            Session["SelectedSubCategory"] = subCategory;
+            Session["SelectedCategory"] = categrory.ToString();
+            Session["SelectedSubCategory"] = subCategory.ToString();
             Session["SearchTillKm"] = lookingTillDistance;
             Session["SortBy"] = lookingBy;
             Session["Keyword"] = lookingFor;
@@ -217,7 +220,7 @@ namespace Nova.Controllers
         {
             StringBuilder sb = new StringBuilder();
             int divRow = 0;
-
+            sb.AppendLine("<div class=\"col-sm-9\">");
             sb.AppendLine("<div class=\"container\">");
             sb.AppendLine("<div class=\"row mb-5\">");
 
@@ -253,8 +256,9 @@ namespace Nova.Controllers
                 sb.AppendLine(string.Format("<small>{0}</small>", discount.ShopAddress));
                 sb.AppendLine(string.Format("<small>{0}</small>", discount.ShopContact));
                 sb.AppendLine("<br>");
-                sb.AppendLine("<button class=\"btn btn-info controls pull-right btn-sm\">Direction</button>");
-                sb.AppendLine("<button class=\"btn btn-info controls pull-right btn-sm\">Visit Shop</button>");
+
+                sb.AppendLine("<button class=\"btn btn-info controls pull-right btn-sm\" onClick=\"window.open('http://www.google.com'); \">Direction</button>");
+                sb.AppendLine("<button class=\"btn btn-info controls pull-right btn-sm\" onClick=\"window.open('http://www.google.com'); \">Visit Shop</button>");
                 sb.AppendLine("<br>");
                 sb.AppendLine("</div>");
 
@@ -275,7 +279,8 @@ namespace Nova.Controllers
 
             sb.AppendLine("</div>");
             sb.AppendLine("</div>");
-
+            sb.AppendLine("</div>");
+            Session["discountsList"] = sb.ToString();
             return sb.ToString();
         }
         #endregion

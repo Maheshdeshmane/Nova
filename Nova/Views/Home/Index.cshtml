@@ -6,11 +6,13 @@
     var selectedSubCategoryList = Session["SelectedSubCategoryList"] as List<SubCatgory>;
     var selectedCategory = Session["SelectedCategory"] as string;
     var selectedSubCategory = Session["SelectedSubCategory"] as string;
+    var discountList = Session["discountsList"] as string;
+    var myHtmlString = new HtmlString(discountList);
 }
 
 <link href="~/Content/home/index.css" rel="stylesheet" />
 <script src="~/Scripts/Home/home.js"></script>
-<script src='http://maps.googleapis.com/maps/api/js?v=3&sensor=false&amp;libraries=places&key=AIzaSyDSlB9HkBWyc6IJMuYMzkax84TiqrCAaqM'></script>
+<script src='http://maps.googleapis.com/maps/api/js?v=3&sensor=false&amp;libraries=places&key=AIzaSyCqFivV_McLoCKNaVg5-axUySKiUsw-cX8'></script>
 
 <br>
 <div class="container">
@@ -73,7 +75,9 @@
         </div>
 
         <div class="col-sm-9">
-            <div id="banner">                
+            @if (string.IsNullOrEmpty(discountList))
+            {
+             <div id="banner">                
                                                  
                 <div class="row">
                             <div class="content-box">
@@ -393,9 +397,14 @@
                 </div>    
                  
             </div>
-
+            }
+            else
+            {<div id="discountRefreshed">
+                @myHtmlString
+            </div>
+            }
             <div id="discount"></div>
-        </div>
+            </div>
     </div>
 </div>
 
@@ -497,6 +506,7 @@
         document.getElementById("myModel").showModal();
     }
 
+    function test() { alert("TEST");}
     function searchDiscount(){
 
         var categrory = document.getElementById("selectedCategory").value;
@@ -510,7 +520,14 @@
 
 
         var url = "/Home/Search/";
-        document.getElementById("banner").style.display = "none";
+        if (document.getElementById("banner") != null) {
+            document.getElementById("banner").style.display = "none";
+        }
+
+        if (document.getElementById("discountRefreshed") != null) {
+            document.getElementById("discountRefreshed").style.display = "none";
+        }
+        
         $.ajax({
             url: url,
             data: {categrory: categrory, subCategory: subCategory, lookingAt: lookingAt, lookingAtLat: lookingAtLat, lookingAtLng: lookingAtLng, lookingFor: lookingFor, lookingBy: lookingBy, lookingTillDistance: lookingTillDistance            },
