@@ -439,10 +439,13 @@
 
 <script type="text/javascript">
     //Load
-    google.maps.event.addDomListener(window, 'load', function () {
+    window.onload = function load() {
         $('#myModal').modal('show');
         document.getElementById("errorPane").style.display = "none";
         document.getElementById("infoPane").style.display = "none";
+    };
+
+    google.maps.event.addDomListener(window, 'load', function () {
         var places = new google.maps.places.Autocomplete(document.getElementById('lookingAt'));
         google.maps.event.addListener(places, 'place_changed', function () {
             var place = places.getPlace();
