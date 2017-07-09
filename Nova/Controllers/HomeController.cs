@@ -256,7 +256,7 @@ namespace Nova.Controllers
             sb.AppendLine("<div class=\"row mb-5\">");
 
             if (data.Count == 0)
-                sb.AppendLine("<div>Sorry No Records Found</div>");
+                sb.AppendLine("<div>Sorry, No Discount available for filter criteria! Try new search</div>");
 
             foreach (var discount in data)
             {
