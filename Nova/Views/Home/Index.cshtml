@@ -8,6 +8,7 @@
     var selectedSubCategory = Session["SelectedSubCategory"] as string;
     var discountList = Session["discountsList"] as string;
     var myHtmlString = new HtmlString(discountList);
+    var refershPage = Session["refresh"] as string;
 }
 
 
@@ -72,7 +73,7 @@
                         </div>
                         @Html.HiddenFor(model => model.lookingAtLat)
                         @Html.HiddenFor(model => model.lookingAtLng)
-                        
+                        @Html.Hidden("Refersh",refershPage, new { id = "Refersh" })
                 </div>
 
 
@@ -436,10 +437,14 @@
 
 <script type="text/javascript">
     //Load
-    window.onload = function load() {
-        $('#myModal').modal('show');
+    window.onload = function load() {       
         document.getElementById("errorPane").style.display = "none";
         document.getElementById("infoPane").style.display = "none";
+        @{<text>
+        var Refersh ="@refershPage";       
+        </text>}
+        if(Refersh=="NewPage")
+        { $('#myModal').modal('show');}
     };
 
     google.maps.event.addDomListener(window, 'load', function () {
@@ -480,19 +485,19 @@
     }
 
     String.format = function() {
-    // The string containing the format items (e.g. "{0}")
-    // will and always has to be the first argument.
-    var theString = arguments[0];
+        // The string containing the format items (e.g. "{0}")
+        // will and always has to be the first argument.
+        var theString = arguments[0];
 
-    // start with the second argument (i = 1)
-    for (var i = 1; i < arguments.length; i++) {
-        // "gm" = RegEx options for Global search (more than one instance)
-        // and for Multiline search
-        var regEx = new RegExp("\\{" + (i - 1) + "\\}", "gm");
-        theString = theString.replace(regEx, arguments[i]);
-    }
+        // start with the second argument (i = 1)
+        for (var i = 1; i < arguments.length; i++) {
+            // "gm" = RegEx options for Global search (more than one instance)
+            // and for Multiline search
+            var regEx = new RegExp("\\{" + (i - 1) + "\\}", "gm");
+            theString = theString.replace(regEx, arguments[i]);
+        }
 
-    return theString;
+        return theString;
     }
 
 
@@ -535,12 +540,12 @@
             document.getElementById('error').innerHTML = "";
         }
         var subCategory = document.getElementById("selectedSubCategory").value;
-        var lookingAt = document.getElementById("lookingAt").value;      
+        var lookingAt = document.getElementById("lookingAt").value;
         var lookingAtLat = document.getElementById("lookingAtLat").value;
 
         if (lookingAt.length != 0 && lookingAtLat.length == 0) {
             document.getElementById("infoPane").style.display = "block";
-            document.getElementById('info').innerHTML = "Unable to recognize location hence result is not accurate, type slowly and select the value from dropdown only for accurate result";             
+            document.getElementById('info').innerHTML = "Unable to recognize location hence result is not accurate, type slowly and select the value from dropdown only for accurate result";
         }
         else {
             document.getElementById("infoPane").style.display = "none";
@@ -568,7 +573,7 @@
         if (document.getElementById("discountRefreshed") != null) {
             document.getElementById("discountRefreshed").style.display = "none";
         }
-        
+
         $.ajax({
             url: url,
             data: {categrory: categrory, subCategory: subCategory, lookingAt: lookingAt, lookingAtLat: lookingAtLat, lookingAtLng: lookingAtLng, lookingFor: lookingFor, lookingBy: lookingBy, lookingTillDistance: lookingTillDistance            },

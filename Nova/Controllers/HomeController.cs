@@ -36,6 +36,7 @@ namespace Nova.Controllers
                 Session["Locality"] = string.Empty;
                 Session["LocalityLat"] = string.Empty;
                 Session["LocalityLong"] = string.Empty;
+                Session["refresh"] = "NewPage";
             }
             else {
                 Int32.TryParse(Session["SearchTillKm"].ToString(), out searchTill);
@@ -47,6 +48,7 @@ namespace Nova.Controllers
                 _request.lookingAtLat = Session["LocalityLat"] as string;
                 _request.lookingAtLng = Session["LocalityLong"] as string;
                 _request.selectedCategory = Session["SelectedCategory"] as string;
+                Session["refresh"] = "OldPage";
             }
             catList.ForEach(x => catNames.Add(new SelectListItem { Text = x.CatgorieName, Value = x.CatgorieId.ToString() }));
             _request.category = catNames;
@@ -256,7 +258,7 @@ namespace Nova.Controllers
             sb.AppendLine("<div class=\"row mb-5\">");
 
             if (data.Count == 0)
-                sb.AppendLine("<div>Sorry, No Discount available for filter criteria! Try new search</div>");
+                sb.AppendLine("<div><br>Sorry, No Discount available for filter criteria! Try new search</div>");
 
             foreach (var discount in data)
             {
