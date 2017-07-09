@@ -8,6 +8,7 @@ using Nova.common;
 using System.Linq;
 using System.Text;
 using System;
+using System.Configuration;
 
 namespace Nova.Controllers
 {
@@ -18,9 +19,10 @@ namespace Nova.Controllers
         {
             BaseRequest _request = new BaseRequest();
             List<SelectListItem> catNames = new List<SelectListItem>();
+            ConnectionString = ConfigurationManager.ConnectionStrings["SQLDbConnection"].ToString();
             List<Category> catList = GetCatgoryList();
             List<SubCatgory> objCat = new List<SubCatgory>();
-            List<SubCatgory> subCatgory = GetSubCatgoryList();
+            List<SubCatgory> subCatgory = GetSubCatgoryList();        
             int searchTill = 20;
             if (Session.IsNewSession)
             {
@@ -52,6 +54,7 @@ namespace Nova.Controllers
             return View(_request);
         }
 
+        public string ConnectionString { get; set; }
         //Action result for ajax call
         [HttpPost]
         public ActionResult GetSubCatgoryByCategoryId(int stateid)
@@ -69,6 +72,21 @@ namespace Nova.Controllers
         public ActionResult Search(int categrory, int subCategory, string lookingAt, string lookingAtLat, string lookingAtLng, string lookingFor, string lookingBy, string lookingTillDistance)
         {
 
+            if (!string.IsNullOrEmpty(lookingAt))
+            {
+                lookingAt = RemoveWildCardChar(lookingAt);
+            }
+
+            if (!string.IsNullOrEmpty(lookingFor))
+            {
+                lookingFor = RemoveWildCardChar(lookingFor);
+            }
+
+            if (!string.IsNullOrEmpty(lookingTillDistance))
+            {
+                lookingTillDistance = RemoveWildCardChar(lookingTillDistance);
+            }
+            
             Session["SelectedCategory"] = categrory.ToString();
             Session["SelectedSubCategory"] = subCategory.ToString();
             Session["SearchTillKm"] = lookingTillDistance;
@@ -99,9 +117,13 @@ namespace Nova.Controllers
 
         #region "DB Methods"
         public List<Category> GetCatgoryList()
-        {
+        {            
             List<Category> onlineShopCategory = new List<Category>();
-            SqlConnection con = new SqlConnection("data source=.\\SQLExpress;initial catalog=DisCheckOut;integrated security=True;");
+
+            if (string.IsNullOrEmpty(ConnectionString))
+                ConnectionString = ConfigurationManager.ConnectionStrings["SQLDbConnection"].ToString();
+
+            SqlConnection con = new SqlConnection(ConnectionString);
             var cmd = new SqlCommand("dbo.[getCatgoryList]", con);
             cmd.CommandType = CommandType.StoredProcedure;
             try
@@ -123,7 +145,11 @@ namespace Nova.Controllers
         public List<SubCatgory> GetSubCatgoryList()
         {
             List<SubCatgory> onlineShopSubCategory = new List<SubCatgory>();
-            SqlConnection con = new SqlConnection("data source=.\\SQLExpress;initial catalog=DisCheckOut;integrated security=True;");
+
+            if (string.IsNullOrEmpty(ConnectionString))
+                ConnectionString = ConfigurationManager.ConnectionStrings["SQLDbConnection"].ToString();
+
+            SqlConnection con = new SqlConnection(ConnectionString);
             var cmd = new SqlCommand("dbo.[getSubCatgoryList]", con);
             cmd.CommandType = CommandType.StoredProcedure;
             try
@@ -146,7 +172,10 @@ namespace Nova.Controllers
 
             List<DiscountDetailsModel> discountDetails = new List<DiscountDetailsModel>();
 
-            SqlConnection con = new SqlConnection("data source=.\\SQLExpress;initial catalog=DisCheckOut;integrated security=True;");
+            if (string.IsNullOrEmpty(ConnectionString))
+                ConnectionString = ConfigurationManager.ConnectionStrings["SQLDbConnection"].ToString();
+
+            SqlConnection con = new SqlConnection(ConnectionString);
             var cmd = new SqlCommand("dbo.[getDiscountCheckWithoutLocation]", con);
             cmd.CommandType = CommandType.StoredProcedure;
 
@@ -182,8 +211,10 @@ namespace Nova.Controllers
         {
 
             List<DiscountDetailsModel> discountDetails = new List<DiscountDetailsModel>();
+            if(string.IsNullOrEmpty(ConnectionString))
+                ConnectionString = ConfigurationManager.ConnectionStrings["SQLDbConnection"].ToString();
 
-            SqlConnection con = new SqlConnection("data source=.\\SQLExpress;initial catalog=DisCheckOut;integrated security=True;");
+            SqlConnection con = new SqlConnection(ConnectionString);
             var cmd = new SqlCommand("[dbo].[getDiscountCheckForLocation]", con);
             cmd.CommandType = CommandType.StoredProcedure;
 
@@ -282,6 +313,12 @@ namespace Nova.Controllers
             sb.AppendLine("</div>");
             Session["discountsList"] = sb.ToString();
             return sb.ToString();
+        }
+
+        public string RemoveWildCardChar(string str)
+        {
+            var pattern = @"/\[]:|<>+=;'?*";
+            return new string(str.Trim().Where(ch => !pattern.Contains(ch)).ToArray());
         }
         #endregion
     }
