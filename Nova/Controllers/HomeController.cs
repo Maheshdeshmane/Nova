@@ -290,8 +290,9 @@ namespace Nova.Controllers
                 sb.AppendLine(string.Format("<small>{0}</small>", discount.ShopContact));
                 sb.AppendLine("<br>");
 
-                sb.AppendLine("<button class=\"btn btn-info controls pull-right btn-sm\" onClick=\"window.open('http://www.google.com'); \">Direction</button>");
-                sb.AppendLine("<button class=\"btn btn-info controls pull-right btn-sm\" onClick=\"window.open('http://www.google.com'); \">Visit Shop</button>");
+                sb.AppendLine(string.Format("<button class=\"btn btn-info controls pull-right btn-sm\" onClick=\"window.open('{0}'); \">Direction</button>",discount.ShopGoogleMapAddress));
+                string onlineShop = string.Format("https://www.whopperbay.com/shop/{0}", discount.ShopOnlineAddress);
+                sb.AppendLine(string.Format("<button class=\"btn btn-info controls pull-right btn-sm\" onClick=\"window.open('{0}'); \">Visit Shop</button>", onlineShop));
                 sb.AppendLine("<br>");
                 sb.AppendLine("</div>");
 

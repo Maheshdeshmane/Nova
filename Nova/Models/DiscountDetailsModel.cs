@@ -13,5 +13,7 @@ namespace Nova.Models
         public string ShopContact { get; set; }
         public string ShopOffer { get; set; }
         public string ShopOfferValidDate { get; set; }
+        public string ShopGoogleMapAddress { get; set; }
+        public string ShopOnlineAddress { get; set; }
     }
 }
