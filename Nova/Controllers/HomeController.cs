@@ -56,6 +56,12 @@ namespace Nova.Controllers
             return View(_request);
         }
 
+        public ActionResult Shop()
+        {
+            //Create online shop
+            return View();
+        }
+
         public string ConnectionString { get; set; }
         //Action result for ajax call
         [HttpPost]
