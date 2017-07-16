@@ -61,10 +61,10 @@
                         </div>
                         <hr>
                     <div class="row">
-                        <div id="errorPane"  class="alert alert-danger">
+                        <div id="errorPane"  class="alert alert-danger" style="display: none;">
                             <div id="error"></div>
                         </div>
-                        <div id="infoPane" class="alert alert-info">
+                        <div id="infoPane" class="alert alert-info" style="display: none;">
                             <div id="info"></div>
                         </div>
                     </div>
@@ -446,6 +446,23 @@
         if(Refersh=="NewPage")
         { $('#myModal').modal('show');}
     };
+
+    function home()
+    {
+        var url = "/Home/home/";
+        $.ajax({
+            url: url,
+            cache: false,
+            type: "POST",
+            success: function () {
+            },
+            error: function (reponse) {
+                alert("something went wrong, please try new window");
+            }
+        });
+  
+        
+    }
 
     google.maps.event.addDomListener(window, 'load', function () {
         var places = new google.maps.places.Autocomplete(document.getElementById('lookingAt'));

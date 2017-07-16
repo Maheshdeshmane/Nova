@@ -24,6 +24,12 @@ namespace Nova.Controllers
             List<SubCatgory> objCat = new List<SubCatgory>();
             List<SubCatgory> subCatgory = GetSubCatgoryList();        
             int searchTill = 20;
+            bool isSessionRequired = Session.IsNewSession;
+            if (!isSessionRequired)
+            {
+                isSessionRequired=string.IsNullOrEmpty(Session["IsNewSession"].ToString())?false:(bool)Session["IsNewSession"];
+            }
+
             if (Session.IsNewSession)
             {
                 Session["CategoryList"] = catList;
@@ -49,7 +55,11 @@ namespace Nova.Controllers
                 _request.lookingAtLng = Session["LocalityLong"] as string;
                 _request.selectedCategory = Session["SelectedCategory"] as string;
                 Session["refresh"] = "OldPage";
+
+                if (isSessionRequired)
+                    Session["discountsList"] = null;
             }
+            Session["IsNewSession"] = false;
             catList.ForEach(x => catNames.Add(new SelectListItem { Text = x.CatgorieName, Value = x.CatgorieId.ToString() }));
             _request.category = catNames;
             _request.subCategory = new List<SelectListItem>();
@@ -60,6 +70,13 @@ namespace Nova.Controllers
         {
             //Create online shop
             return View();
+        }
+
+        [HttpPost]
+        public ActionResult home()
+        {
+            Session["IsNewSession"] = true;
+            return Json("");
         }
 
         public string ConnectionString { get; set; }
