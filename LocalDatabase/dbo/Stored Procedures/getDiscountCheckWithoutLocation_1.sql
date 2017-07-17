@@ -1,0 +1,29 @@
+﻿CREATE PROCEDURE [dbo].[getDiscountCheckWithoutLocation] 
+ (@SEARCHTEXT VARCHAR(120), @DepartmentId int,@SubDepartmentId int)
+AS
+SELECT D.IMAGES AS ShopOfferImages,C.BUSINESSNAME as ShopName,C.BUSINESSCONTACT as ShopContact,C.SHOPADDRESS as ShopAddress,D.OFFER as ShopOffer,D.VALIDTILL  as ShopOfferValidDate
+,C.GoogleMapAddress AS ShopGoogleMapAddress, C.WebBusinessName AS ShopOnlineAddress
+FROM (
+SELECT BUSINESSNAME,BUSINESSCONTACT,LATITUDE,LONGITUDE,CUSTOMERID,SHOPADDRESS,
+ShopType as Department,[GoogleMapAddress],[WebBusinessName]
+FROM dbo.CHECKOUTCUSTOMER) C 
+INNER JOIN DBO.CHECKOUTTRANSATION T ON T.CUSTOMERID = C.CUSTOMERID  
+INNER JOIN DBO.CHECKOUTDISCOUNT D ON D.CUSTOMERID = C.CUSTOMERID 
+WHERE 
+
+
+
+
+(1=(CASE WHEN @DepartmentId IS NULL THEN 1 ELSE 0 END) Or C.Department=@DepartmentId)
+AND 
+(1=(CASE WHEN @SubDepartmentId =0 THEN 1 ELSE 0 END)Or D.SubCategoryId=@SubDepartmentId )
+AND
+(1=(CASE WHEN @SEARCHTEXT IS NULL THEN 1 ELSE 0 END)Or D.KEYWORD LIKE '%' + @SEARCHTEXT + '%'  )
+
+
+
+ AND T.VALIDTILL > GETDATE()  
+
+ORDER BY  D.DISCOUNT DESC
+
+ 
