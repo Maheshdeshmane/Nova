@@ -23,13 +23,8 @@
 
 
 jQuery(document).ready(function ($) {
-    alert("dfd");
-    var $modaltpl = '';
-    $.get("modaltpl.html", function( my_var ) {
-        $modaltpl = my_var;
-    }, 'html');  // or 'text', 'xml', 'more'
-
-
+    var $modaltpl = '<div class="row">    <div class="col-xs-6">        <img alt="" src="##IMG##" class="img-responsive">    </div>    <div class="col-xs-6">        <div class="portfolio-details">            <h3>##TITLE##</h3>            <p>##CONTENT##</p>            <strong>Client: <a href="##CLLINK##">##CLNAME##</a></strong> <br>            <strong>Service: ##SERVICE##</strong> <br>        </div>    </div></div>';
+    
     var lz_path = window.location.protocol + '//' + window.location.host;
     var pathArray = window.location.pathname.split( '/' );
     for (i = 1; i < (pathArray.length - 1); i++) {
@@ -497,7 +492,7 @@ jQuery(document).ready(function ($) {
         var $cname = $(this).data('cname');
         var $service = $(this).data('service');
         //console.log($content);
-
+       
         console.log($modaltpl);
 
         $modaltpl_t = $modaltpl;
@@ -508,10 +503,7 @@ jQuery(document).ready(function ($) {
         $modaltpl_t = $modaltpl_t.replace(/##CLNAME##/gi, $cname);
         $modaltpl_t = $modaltpl_t.replace(/##SERVICE##/gi, $service);
 
-
-
         //console.log($modaltpl);
-
 
         $('#portfolioModal1').find('.modal-body').html($modaltpl_t);
         $('#portfolioModal1').modal();
