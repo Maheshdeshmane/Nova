@@ -23,7 +23,7 @@
 
 
 jQuery(document).ready(function ($) {
-
+    alert("dfd");
     var $modaltpl = '';
     $.get("modaltpl.html", function( my_var ) {
         $modaltpl = my_var;
@@ -288,14 +288,6 @@ jQuery(document).ready(function ($) {
     });
 
 
-    /********************************************
-        *** Start Contact Form Validation And Ajax Submission
-        *********************************************/
-    jQuery.validator.setDefaults({
-        debug: true,
-        success: "valid"
-    });
-
 
     /********************************************
      *** Start Contact Form Validation And Ajax Submission
@@ -495,7 +487,8 @@ jQuery(document).ready(function ($) {
      <i class="fa fa-link fa-spin"></i>
      </a>*/
 
-    $('.figure-link a').on('click',function(e){
+    $('.figure-link a').on('click', function (e) {
+        alert("");
         e.preventDefault();
         var $title = $(this).data('title');
         var $content = $(this).data('content');
