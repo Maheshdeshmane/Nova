@@ -483,7 +483,7 @@ jQuery(document).ready(function ($) {
      </a>*/
 
     $('.figure-link a').on('click', function (e) {
-        alert("");
+
         e.preventDefault();
         var $title = $(this).data('title');
         var $content = $(this).data('content');
