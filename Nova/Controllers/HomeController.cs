@@ -1,6 +1,7 @@
 ﻿using System.Collections.Generic;
 using System.Web.Mvc;
 using Nova.Models;
+using Nova.Models.OnlineShopModels;
 using Nova.Services;
 using System.Data.SqlClient;
 using System.Data;
@@ -66,10 +67,28 @@ namespace Nova.Controllers
             return View(_request);
         }
 
-        public ActionResult Shop()
+        public ActionResult Shop(string ShopName="mayastore")
         {
-            //Create online shop
-            return View();
+
+            OnlineShop onlineShop = new OnlineShop();
+            onlineShop.Home = GetOnlineShopHomeDetails(ShopName);
+
+            if (onlineShop.Home == null)
+            {
+                ///TODO- Return to homepage
+            }
+            onlineShop.Products = GetOnlineShopProductDetails(ShopName);
+            onlineShop.TeamMembers = GetOnlineShopTeamMemberDetails(ShopName);
+            onlineShop.Discounts = GetOnlineShopDiscountDetails(ShopName);
+
+            if (onlineShop.Products != null)
+                onlineShop.ShopCategory = onlineShop.Products.Select(product => product.FolderName).Distinct().ToList();
+
+            onlineShop.Awards = GetOnlineShopHomeAwards(ShopName);
+            onlineShop.Testimonials = GetOnlineShopTestimonials(ShopName);
+            return View(onlineShop);
+            
+            
         }
 
         [HttpPost]
@@ -268,6 +287,231 @@ namespace Nova.Controllers
             return discountDetails;
 
         }
+        /// <summary>
+        /// Get Shop Details by ShopName
+        /// </summary>
+        /// <param name="shopName">name of shop</param>
+        /// <returns></returns>
+        public OnlineShopHome GetOnlineShopHomeDetails(string shopName)
+        {
+            if (string.IsNullOrEmpty(ConnectionString))
+                ConnectionString = ConfigurationManager.ConnectionStrings["SQLDbConnection"].ToString();
+
+            OnlineShopHome onlineShopHome = new OnlineShopHome();
+            SqlConnection con = new SqlConnection(ConnectionString);
+            var cmd = new SqlCommand("dbo.[getOnlineShopDetailsByName]", con);
+            cmd.CommandType = CommandType.StoredProcedure;
+            cmd.Parameters.Add(new SqlParameter("@SEARCHTEXT", SqlDbType.VarChar)).Value = shopName;//Pass the parameter for lookingAtLat
+            try
+            {
+                if (con.State != ConnectionState.Open)
+                    con.Open();
+
+                SqlDataReader reader = cmd.ExecuteReader();
+                while (reader.Read())
+                {
+                    onlineShopHome.BusinessContact = (string)reader["BusinessContact"];
+                    onlineShopHome.BusinessName = (string)reader["BusinessName"];
+                    onlineShopHome.ComplaintContact = (string)reader["ComplaintContact"];
+                    onlineShopHome.Email = (string)reader["Email"];
+                    onlineShopHome.FacebookLink = (string)reader["FacebookLink"];
+                    onlineShopHome.GoogleMapAddress = (string)reader["GoogleMapAddress"];
+                    onlineShopHome.HeaderImage = (string)reader["HeaderImage"];
+                    onlineShopHome.HeaderImage2 = (string)reader["HeaderImage2"];
+                    onlineShopHome.HeaderImage3 = (string)reader["HeaderImage3"];
+                    onlineShopHome.latitude = reader["latitude"].ToString();
+                    onlineShopHome.LinkdInLink = (string)reader["LinkdInLink"];
+                    onlineShopHome.longitude = reader["longitude"].ToString();
+                    onlineShopHome.shopAddress = (string)reader["shopAddress"];
+                    onlineShopHome.ShopName = (string)reader["ShopName"];
+                    onlineShopHome.ShopType = (int)reader["ShopType"];
+                    onlineShopHome.TwitterLink = (string)reader["TwitterLink"];
+                    onlineShopHome.WebBusinessName = (string)reader["WebBusinessName"];
+                    onlineShopHome.ShopAboutUs = reader["ShopAboutUs"]!=System.DBNull.Value? (string)reader["ShopAboutUs"]:string.Empty;
+                    onlineShopHome.ShopValue1Tittle = reader["ShopValue1Tittle"] != System.DBNull.Value ? (string)reader["ShopValue1Tittle"] : string.Empty;
+                    onlineShopHome.ShopValue1Desc = reader["ShopValue1Desc"] != System.DBNull.Value ? (string)reader["ShopValue1Desc"] : string.Empty;
+                    onlineShopHome.ShopValue2Tittle = reader["ShopValue2Tittle"] != System.DBNull.Value ? (string)reader["ShopValue2Tittle"] : string.Empty;
+                    onlineShopHome.ShopValue2Desc = reader["ShopValue2Desc"] != System.DBNull.Value ? (string)reader["ShopValue2Desc"] : string.Empty;
+                    onlineShopHome.ShopValue3Tittle = reader["ShopValue3Tittle"] != System.DBNull.Value ? (string)reader["ShopValue3Tittle"] : string.Empty;
+                    onlineShopHome.ShopValue3Desc = reader["ShopValue3Desc"] != System.DBNull.Value ? (string)reader["ShopValue3Desc"] : string.Empty;
+                    onlineShopHome.ShopValue4Tittle = reader["ShopValue4Tittle"] != System.DBNull.Value ? (string)reader["ShopValue4Tittle"] : string.Empty;
+                    onlineShopHome.ShopValue4Desc = reader["ShopValue4Desc"] != System.DBNull.Value ? (string)reader["ShopValue4Desc"] : string.Empty;
+                    onlineShopHome.ShopOffersTagLine = reader["ShopOffersTagLine"] != System.DBNull.Value ? (string)reader["ShopOffersTagLine"] : string.Empty;
+                    onlineShopHome.ShopTeamTagLine = reader["ShopTeamTagLine"] != System.DBNull.Value ? (string)reader["ShopTeamTagLine"] : string.Empty;
+                    onlineShopHome.ShopTestimonialsTagLine = reader["ShopTestimonialsTagLine"] != System.DBNull.Value ? (string)reader["ShopTestimonialsTagLine"] : string.Empty;
+                    onlineShopHome.ShopContactTagLine = reader["ShopContactTagLine"] != System.DBNull.Value ? (string)reader["ShopContactTagLine"] : string.Empty;
+                    onlineShopHome.ShopContactDesc = reader["ShopContactDesc"] != System.DBNull.Value ? (string)reader["ShopContactDesc"] : string.Empty;
+                    onlineShopHome.ShopTagSubLine = reader["ShopTagSubLine"] != System.DBNull.Value ? (string)reader["ShopTagSubLine"] : string.Empty;
+                }
+            }
+            finally
+            {
+                if (con.State != ConnectionState.Closed)
+                    con.Close();
+            }
+            return onlineShopHome;
+        }
+
+        /// <summary>
+        /// Get Product Details by ShopName
+        /// </summary>
+        /// <param name="shopName">name of shop</param>
+        /// <returns></returns>
+        public List<OnlineShopProduct> GetOnlineShopProductDetails(string shopName)
+        {
+            if (string.IsNullOrEmpty(ConnectionString))
+                ConnectionString = ConfigurationManager.ConnectionStrings["SQLDbConnection"].ToString();
+
+            List<OnlineShopProduct> onlineShopProduct = new List<OnlineShopProduct>();
+            SqlConnection con = new SqlConnection(ConnectionString);
+            var cmd = new SqlCommand("dbo.[getOnlineShopProductByName]", con);
+            cmd.CommandType = CommandType.StoredProcedure;
+            cmd.Parameters.Add(new SqlParameter("@SEARCHTEXT", SqlDbType.VarChar)).Value = shopName;//Pass the parameter for lookingAtLat
+            try
+            {
+                if (con.State != ConnectionState.Open)
+                    con.Open();
+
+                onlineShopProduct = new ReflectionPopulator<OnlineShopProduct>().CreateList(cmd.ExecuteReader());
+
+            }
+            finally
+            {
+                if (con.State != ConnectionState.Closed)
+                    con.Close();
+            }
+            return onlineShopProduct;
+        }
+
+        /// <summary>
+        /// Get Team Members Details by ShopName
+        /// </summary>
+        /// <param name="shopName">name of shop</param>
+        /// <returns></returns>
+        public List<OnlineShopTeamMember> GetOnlineShopTeamMemberDetails(string shopName)
+        {
+            if (string.IsNullOrEmpty(ConnectionString))
+                ConnectionString = ConfigurationManager.ConnectionStrings["SQLDbConnection"].ToString();
+
+            List<OnlineShopTeamMember> onlineShopTeamMembers = new List<OnlineShopTeamMember>();
+            SqlConnection con = new SqlConnection(ConnectionString);
+            var cmd = new SqlCommand("dbo.[getOnlineShopTeamByName]", con);
+            cmd.CommandType = CommandType.StoredProcedure;
+            cmd.Parameters.Add(new SqlParameter("@SEARCHTEXT", SqlDbType.VarChar)).Value = shopName;//Pass the parameter for lookingAtLat
+            try
+            {
+                if (con.State != ConnectionState.Open)
+                    con.Open();
+
+                onlineShopTeamMembers = new ReflectionPopulator<OnlineShopTeamMember>().CreateList(cmd.ExecuteReader());
+
+            }
+            finally
+            {
+                if (con.State != ConnectionState.Closed)
+                    con.Close();
+            }
+            return onlineShopTeamMembers;
+        }
+
+        /// <summary>
+        /// Get Team Members Details by ShopName
+        /// </summary>
+        /// <param name="shopName">name of shop</param>
+        /// <returns></returns>
+        public List<OnlineShopDiscount> GetOnlineShopDiscountDetails(string shopName)
+        {
+            if (string.IsNullOrEmpty(ConnectionString))
+                ConnectionString = ConfigurationManager.ConnectionStrings["SQLDbConnection"].ToString();
+
+            List<OnlineShopDiscount> onlineShopDiscount = new List<OnlineShopDiscount>();
+            SqlConnection con = new SqlConnection(ConnectionString);
+            var cmd = new SqlCommand("dbo.[getOnlineShopDiscountByName]", con);
+            cmd.CommandType = CommandType.StoredProcedure;
+            cmd.Parameters.Add(new SqlParameter("@SEARCHTEXT", SqlDbType.VarChar)).Value = shopName;//Pass the parameter for lookingAtLat
+            try
+            {
+                if (con.State != ConnectionState.Open)
+                    con.Open();
+
+                onlineShopDiscount = new ReflectionPopulator<OnlineShopDiscount>().CreateList(cmd.ExecuteReader());
+
+            }
+            finally
+            {
+                if (con.State != ConnectionState.Closed)
+                    con.Close();
+            }
+            return onlineShopDiscount;
+        }
+
+        /// <summary>
+        /// Get Shop Awards by ShopName
+        /// </summary>
+        /// <param name="shopName">name of shop</param>
+        /// <returns></returns>
+        public OnlineShopAwards GetOnlineShopHomeAwards(string shopName)
+        {
+            if (string.IsNullOrEmpty(ConnectionString))
+                ConnectionString = ConfigurationManager.ConnectionStrings["SQLDbConnection"].ToString();
+
+            OnlineShopAwards onlineShopAwards = new OnlineShopAwards();
+            SqlConnection con = new SqlConnection(ConnectionString);
+            var cmd = new SqlCommand("dbo.[getOnlineShopHomeAwards]", con);
+            cmd.CommandType = CommandType.StoredProcedure;
+            cmd.Parameters.Add(new SqlParameter("@SEARCHTEXT", SqlDbType.VarChar)).Value = shopName;//Pass the parameter for lookingAtLat
+            try
+            {
+                if (con.State != ConnectionState.Open)
+                    con.Open();
+
+                SqlDataReader reader = cmd.ExecuteReader();
+                while (reader.Read())
+                {
+                    onlineShopAwards.Awards = (int)reader["Awards"];
+                    onlineShopAwards.FacebookLikes = (int)reader["FacebookLikes"];
+                    onlineShopAwards.Followers = (int)reader["Followers"];
+                    onlineShopAwards.HappyClients = (int)reader["HappyClients"];                    
+                }
+            }
+            finally
+            {
+                if (con.State != ConnectionState.Closed)
+                    con.Close();
+            }
+            return onlineShopAwards;
+        }
+
+        /// <summary>
+        /// Get Team Members Details by ShopName
+        /// </summary>
+        /// <param name="shopName">name of shop</param>
+        /// <returns></returns>
+        public List<OnlineShopTestimonials> GetOnlineShopTestimonials(string shopName)
+        {
+            if (string.IsNullOrEmpty(ConnectionString))
+                ConnectionString = ConfigurationManager.ConnectionStrings["SQLDbConnection"].ToString();
+
+            List<OnlineShopTestimonials> onlineShopDiscount = new List<OnlineShopTestimonials>();
+            SqlConnection con = new SqlConnection(ConnectionString);
+            var cmd = new SqlCommand("dbo.[getOnlineShopHomeTestimonials]", con);
+            cmd.CommandType = CommandType.StoredProcedure;
+            cmd.Parameters.Add(new SqlParameter("@SEARCHTEXT", SqlDbType.VarChar)).Value = shopName;//Pass the parameter for lookingAtLat
+            try
+            {
+                if (con.State != ConnectionState.Open)
+                    con.Open();
+
+                onlineShopDiscount = new ReflectionPopulator<OnlineShopTestimonials>().CreateList(cmd.ExecuteReader());
+
+            }
+            finally
+            {
+                if (con.State != ConnectionState.Closed)
+                    con.Close();
+            }
+            return onlineShopDiscount;
+        }
 
         #endregion
 
@@ -276,7 +520,8 @@ namespace Nova.Controllers
         {
             StringBuilder sb = new StringBuilder();
             int divRow = 0;
-            sb.AppendLine("<div class=\"col-sm-9\">");
+            sb.AppendLine("<div class=\"col-sm-9\">");
+
             sb.AppendLine("<div class=\"container\">");
             sb.AppendLine("<div class=\"row mb-5\">");
 

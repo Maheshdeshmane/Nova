@@ -23,7 +23,7 @@
 
 
 jQuery(document).ready(function ($) {
-    var $modaltpl = '<div class="row">    <div class="col-xs-6">        <img alt="" src="##IMG##" class="img-responsive">    </div>    <div class="col-xs-6">        <div class="portfolio-details">            <h3>##TITLE##</h3>            <p>##CONTENT##</p>            <strong>Client: <a href="##CLLINK##">##CLNAME##</a></strong> <br>            <strong>Service: ##SERVICE##</strong> <br>        </div>    </div></div>';
+    var $modaltpl = '<div class="row">    <div class="col-xs-6">        <img alt="" src="##IMG##" class="img-responsive" >    </div>    <div class="col-xs-6">        <div>            <h3>##TITLE##</h3>            <p align="left">##CONTENT##</p>         <p align="left">   <strong>Price: ##CLNAME##</a></strong> <br>            <p align="left"><div align="left"> ##SERVICE##</div></p> <br>        </div> <br> <div>  <div class="input-group input-group-lg"><input type="text" class="form-control" placeholder="Your Mobile No."/><div class="input-group-btn"><button type="submit" class="btn" ><span class="glyphicon glyphicon-send" id="sendbtn"></span></button></div></div> </div>   </div></div>';
     
     var lz_path = window.location.protocol + '//' + window.location.host;
     var pathArray = window.location.pathname.split( '/' );
@@ -471,17 +471,7 @@ jQuery(document).ready(function ($) {
 
 
 
-    //DATA FOR MODAL
-    /*  <a  data-title="Portfolio Title"
-     data-content="Lorem ipsum dolor sit amet, consectetur adipisicing elit. Officia, omnis illo iste ratione. Numquam eveniet quo, ullam itaque expedita impedit. Eveniet, asperiores."
-     data-clink="#"
-     data-cname="Codeboxr"
-     data-service="Web Development"
-     data-image="img/portfolio/portfolio-3.jpg"
-     href="#">
-     <i class="fa fa-link fa-spin"></i>
-     </a>*/
-
+  
     $('.figure-link a').on('click', function (e) {
 
         e.preventDefault();
@@ -492,16 +482,26 @@ jQuery(document).ready(function ($) {
         var $cname = $(this).data('cname');
         var $service = $(this).data('service');
         //console.log($content);
-       
+        var str = "";
         console.log($modaltpl);
+        if ($service == 1)
+        { $str = '<span data-value="0" class="glyphicon glyphicon-star"></span><span data-value="1" class="glyphicon glyphicon-star-empty"></span><span data-value="2" class="glyphicon glyphicon-star-empty"></span><span data-value="3" class="glyphicon glyphicon-star-empty"></span><span data-value="4" class="glyphicon glyphicon-star-empty"></span>'; }
+        else if ($service == 2)
+        { $str = '<span data-value="0" class="glyphicon glyphicon-star"></span><span data-value="1" class="glyphicon glyphicon-star"></span><span data-value="2" class="glyphicon glyphicon-star-empty"></span><span data-value="3" class="glyphicon glyphicon-star-empty"></span><span data-value="4" class="glyphicon glyphicon-star-empty"></span>'; }
+        else if ($service == 3)
+        { $str = '<span data-value="0" class="glyphicon glyphicon-star"></span><span data-value="1" class="glyphicon glyphicon-star"></span><span data-value="2" class="glyphicon glyphicon-star"></span><span data-value="3" class="glyphicon glyphicon-star-empty"></span><span data-value="4" class="glyphicon glyphicon-star-empty"></span>'; }
+        else if ($service == 4)
+        { $str = '<span data-value="0" class="glyphicon glyphicon-star"></span><span data-value="1" class="glyphicon glyphicon-star"></span><span data-value="2" class="glyphicon glyphicon-star"></span><span data-value="3" class="glyphicon glyphicon-star"></span><span data-value="4" class="glyphicon glyphicon-star-empty"></span>'; }
+        else if ($service == 5)
+        { $str = '<span data-value="0" class="glyphicon glyphicon-star"></span><span data-value="1" class="glyphicon glyphicon-star"></span><span data-value="2" class="glyphicon glyphicon-star"></span><span data-value="3" class="glyphicon glyphicon-star"></span><span data-value="4" class="glyphicon glyphicon-star"></span>'; }
 
-        $modaltpl_t = $modaltpl;
+            $modaltpl_t = $modaltpl;
         $modaltpl_t = $modaltpl_t.replace(/##TITLE##/gi, $title);
         $modaltpl_t = $modaltpl_t.replace(/##CONTENT##/gi, $content);
         $modaltpl_t = $modaltpl_t.replace(/##IMG##/gi, $image);
         $modaltpl_t = $modaltpl_t.replace(/##CLLINK##/gi, $clink);
         $modaltpl_t = $modaltpl_t.replace(/##CLNAME##/gi, $cname);
-        $modaltpl_t = $modaltpl_t.replace(/##SERVICE##/gi, $service);
+        $modaltpl_t = $modaltpl_t.replace(/##SERVICE##/gi, $str);
 
         //console.log($modaltpl);
 
@@ -519,6 +519,9 @@ jQuery(document).ready(function ($) {
 
     });
 
-
+    $("#sendbtn").on('click',function (e) {
+        alert('test');
+    });
 
 });
+ 
