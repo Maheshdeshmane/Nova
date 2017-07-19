@@ -1,4 +1,4 @@
-﻿@model Nova.Models.OnlineShopModels.OnlineShop
+﻿﻿@model Nova.Models.OnlineShopModels.OnlineShop
 
 @{
     Layout = null;
@@ -12,7 +12,7 @@
     <title>@Model.Home.BusinessName - Amazing Store | Branded Products | Unbelievable Offers & Discounts </title>
     <meta name="description" content="@Model.Home.BusinessName - Online Store Branded Products and unbelievable prices">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    
+
     <script type="text/javascript" src="//ajax.googleapis.com/ajax/libs/jquery/2.0.0/jquery.min.js"></script>
     <script type="text/javascript" src="~/OnlineShop/js/vendor/jquery-1.11.1.min.js"></script>
     <script src="http://ajax.aspnetcdn.com/ajax/jquery.validate/1.13.0/jquery.validate.min.js"></script>
@@ -20,7 +20,7 @@
     <script type="text/javascript" src="http://cdn.jsdelivr.net/jquery.mixitup/latest/jquery.mixitup.min.js"></script>
     <script src="~/OnlineShop/js/jquery.shuffle.min.js"></script>
     <script type="text/javascript" src="~/OnlineShop/js/lz-custom.js"></script>
-    
+
     <link rel="shortcut icon" type="image/x-icon" href="img/lzfavicon.ico" />
     <link rel="icon" type="image/x-icon" href="img/lzfavicon.ico" />
 
@@ -32,7 +32,7 @@
     <link rel="stylesheet" href="~/OnlineShop/css/hover.css" media="all" />
     <link rel="stylesheet" href="~/OnlineShop/css/cbxnewgridhover.css" media="all" />
     <link rel="stylesheet" href="~/OnlineShop/css/font-awesome.min.css" media="all" />
-    
+
 
     <link href='http://fonts.googleapis.com/css?family=Open+Sans:300, 400,600,700|Raleway:400,300,500,700,600,900' rel='stylesheet' type='text/css'>
 
@@ -48,216 +48,139 @@
 </head>
 <body data-spy="scroll" data-target="#myNavbar" data-offset="60" id="myPage">
 
-    <nav class="navbar navbar-default navbar-fixed-top">
-        <div class="container">
-            <div class="navbar-header">
-                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#myNavbar">
-                    <span class="icon-bar"></span>
-                    <span class="icon-bar"></span>
-                    <span class="icon-bar"></span>
-                </button>
-                <a class="navbar-brand" href="#myPage">@Model.Home.BusinessName</a>
-            </div>
-            <div class="collapse navbar-collapse" id="myNavbar">
-                <ul class="nav navbar-nav navbar-right">
-                    <li><a href="#about">ABOUT</a></li>
-                    <li><a href="#product">PRODUCT</a></li>
-                    <li><a href="#award">AWARD</a></li>
-                    <li><a href="#offers">OFFERS</a></li>
-                    <li><a href="#team">TEAM</a></li>
-                    <li><a href="#testimonials">TESTIMONIALS</a></li>
-                    <li><a href="#contact">CONTACT</a></li>
-                </ul>
-            </div>
-        </div>
-    </nav>
-    
-    <div class="cblzbody-wrapper">
-        <header>
-            <div id="lz-headertop" class="lz-headertop">
-                <div class="cbx-header-inner">
-                    <div class="container">
-                    <br />    <br /><br /><br /><br /><br />
-                    <div class="row">
-                            <div class="col-xs-12">
-                                <div class="lz-heading text-center">
-                                    <h1 class="lz-main-heading  wow bounceIn animated "><span class="lz-brand">@Model.Home.BusinessName</span></h1>
-                                    <p class="lz-sub-heading wow slideInRight">@Model.Home.ShopTagSubLine</p>
-                                </div>
-                            </div>
-                        </div> <!-- //ROW headertop-->
-                        <!-- Start Countdown row -->
-                        <br /><br /><br />
-                        
-                        <div class="row">
-                            <div class="col-xs-12">
-                                <div class="lz-socialnetwork wow slideInLeft animated">
-                                    <ul class="list-unstyled list-inline text-center lz-social">
-                                        <li><a href="@Model.Home.FacebookLink"><span class="lz-facebook lz-social-list" data-toggle="tooltip" data-placement="top" title="Facebook" data-template='<div class="tooltip lz-tooltip" role="tooltip"><div class="tooltip-arrow lz-tooltip-arrow"></div><div class="tooltip-inner lz-tooltip-inner"></div></div>'><i class="fa fa-facebook"></i></span></a></li>
-                                        <li><a href="@Model.Home.TwitterLink"><span class="lz-twitter lz-social-list" data-toggle="tooltip" data-placement="top" title="Twitter" data-template='<div class="tooltip lz-tooltip" role="tooltip"><div class="tooltip-arrow lz-tooltip-arrow"></div><div class="tooltip-inner lz-tooltip-inner"></div></div>'><i class="fa fa-twitter"></i></span></a></li>
-                                        <li><a href="@Model.Home.LinkdInLink"><span class="lz-linkedin lz-social-list" data-toggle="tooltip" data-placement="top" title="Linkedin" data-template='<div class="tooltip lz-tooltip" role="tooltip"><div class="tooltip-arrow lz-tooltip-arrow"></div><div class="tooltip-inner lz-tooltip-inner"></div></div>'><i class="fa fa-linkedin"></i></span></a></li>                                        
-                                    </ul>
-                                </div>
-                            </div>
-                        </div><!-- //ROW -->
-                    </div> <!-- // Header CONTAINER -->
-                </div> 
-            </div> 
-        </header>
 
-        <!-- ************* ABOUT US SECTION  ************* -->
-        <section id="about">
-            <div id="cbx-aboutus" class="cbx-section cbx-aboutus">
-                <div class="cbx-inner">
-                    <div class="container">
-                        <div class="text-center cbx-content">
-                            <div class="row">
-                                <div class="col-sm-12">
-                                    <div class="cbx-heading">
-                                        <h2 class="uppercase wow fadeInUp">About Us</h2>
-                                        <hr noshade size="" width="" color="">
-                                    </div>
-                                    <div>
-                                        <div class="row">
-                                            <div class="col-sm-7">
-                                                <div class="cbx-about-text text-right xs-text-center">
-                                                    <p>
-                                                        @Model.Home.ShopAboutUs
-                                                    </p>                                                    
-                                                    <span></span>
-                                                </div>
-                                            </div> 
-                                            @if (Model.Home.HeaderImage2 != null)
-                                            {
-                                                string ImageName = string.Format("http://motherearth.co.in/wp-content/gallery/homepage-slider/{0}",Model.Home.HeaderImage2);
-                                            <div class="col-sm-5">
-                                                <div class="about-img">
-                                                    <img src="@ImageName " alt="@Model.Home.BusinessName-Online Store" />
-                                                </div>
-                                            </div> 
-                                            }
-                                        </div> 
-                                        <div class="row">
-                                            <div class="col-xs-12 col-sm-6 col-md-3">
-                                                <div class="cbx-single-item cbx-single-all">
-                                                    <i class="fa fa-laptop single-fa"></i>
-                                                    <h5>@Model.Home.ShopValue1Tittle</h5>
-                                                    <p>
-                                                        @Model.Home.ShopValue1Desc
-                                                    </p>
-                                                    <a href="@Model.Home.FacebookLink">know more<i class="fa fa-angle-right"></i></a>
-                                                </div>
-                                            </div>
-                                            <div class="col-xs-12 col-sm-6 col-md-3">
-                                                <div class="cbx-single-item cbx-single-all">
-                                                    <i class="fa fa-users single-fa"></i>
-                                                    <h5>@Model.Home.ShopValue2Tittle</h5>
-                                                    <p>
-                                                        @Model.Home.ShopValue2Desc
-                                                    </p>
-                                                    <a href="@Model.Home.FacebookLink">know more<i class="fa fa-angle-right"></i></a>
-                                                </div>
-                                            </div>
-                                            <div class="col-xs-12 col-sm-6 col-md-3">
-                                                <div class="cbx-single-item cbx-single-all">
-                                                    <i class="fa fa-tablet single-fa"></i>
-                                                    <h5>@Model.Home.ShopValue3Tittle</h5>
-                                                    <p>
-                                                        @Model.Home.ShopValue3Desc
-                                                    </p>
-                                                    <a href="@Model.Home.FacebookLink">know more<i class="fa fa-angle-right"></i></a>
-                                                </div>
-                                            </div>
-                                            <div class="col-xs-12 col-sm-6 col-md-3">
-                                                <div class="cbx-single-item cbx-single-all">
-                                                    <i class="fa fa-eye single-fa"></i>
-                                                    <h5>@Model.Home.ShopValue4Tittle</h5>
-                                                    <p>
-                                                        @Model.Home.ShopValue4Desc
-                                                    </p>
-                                                    <a href="@Model.Home.FacebookLink">know more<i class="fa fa-angle-right"></i></a>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div> 
-                            </div> 
-                        </div> 
-                    </div> 
+        <nav class="navbar navbar-default navbar-fixed-top">
+            <div class="container">
+                <div class="navbar-header">
+                    <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#myNavbar">
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                    </button>
+                    <a class="navbar-brand" href="#myPage">@Model.Home.BusinessName</a>
+                </div>
+                <div class="collapse navbar-collapse" id="myNavbar">
+                    <ul class="nav navbar-nav navbar-right">
+                        <li><a href="#about">ABOUT</a></li>
+                        <li><a href="#product">PRODUCT</a></li>
+                        <li><a href="#award">AWARD</a></li>
+                        <li><a href="#offers">OFFERS</a></li>
+                        <li><a href="#team">TEAM</a></li>
+                        <li><a href="#testimonials">TESTIMONIALS</a></li>
+                        <li><a href="#contact">CONTACT</a></li>
+                    </ul>
                 </div>
             </div>
-        </section>
+        </nav>
 
-        <!-- ************* Product SECTION  ************* -->
-        <section id="product">
-            <div id="cbx-portfolio" class="cbx-section cbx-portfolio">
-                <div class="cbx-inner">
-                    <div class="container">
-                        <div class="text-center cbx-content">
-                            <div class="cbx-heading">
-                                <h2 class="uppercase wow fadeInUp">Products</h2>
-                                <hr noshade size="" width="" color="">
-                            </div>
-                            <div class="select-area work-filter text-center">
-                                <ul class="list-inline cbx-select" id="filter">
-
-                                    @if (Model.ShopCategory != null)
-                                    {
-                                        <li><a class="active" data-group="all">All</a></li>
-                                        foreach (var catgory in Model.ShopCategory)
-                                        {
-                                            <li><a data-group="@catgory">@catgory</a></li>
-                                        }
-                                    }
-                                </ul>
-                            </div> 
+        <div class="cblzbody-wrapper">
+            <header>
+                @if (Model.Home != null)
+                {
+                    string ImageAddress = string.Format("http://www.whopperbay.com/shop/{0}/{1}", Model.Home.WebBusinessName, Model.Home.HeaderImage);
+                <div id="lz-headertop" class="lz-headertop" style="background-image: url(@ImageAddress); ">
+                    <div class="cbx-header-inner">
+                        <div class="container">
+                            <br />    <br /><br /><br /><br /><br />
                             <div class="row">
-                                <div id="grid">
-                                    
-                                    @if (Model.Products != null)
-                                    {
-                                        string ImageAddress = string.Empty;
-                                        foreach (var product in Model.Products)
-                                        {
-                                            ImageAddress = string.Format("~/shop/{0}/{1}/{2}", Model.Home.WebBusinessName,product.FolderName, product.ProductImageName);
-                                            <div class="portfolio-item col-xs-12 col-sm-6 col-sm-4" data-groups='["all", "@product.FolderName"]'>
-                                                <div class="single-portfolio">
-                                                    <figure class="item-figure">
-                                                        <img src="@ImageAddress" alt="">
-                                                        <figcaption class="figure-caption">
-                                                            <div class="figure-info">
-                                                                <div class="figure-link">
-                                                                    <a data-title="@product.ProductName" data-content="@product.ProductDesc" data-clink="#" data-cname="@product.ProductPrice" data-service="@product.ProductStar" data-image="@ImageAddress" href="#">
-                                                                        <i class="fa fa-link"></i>
-                                                                    </a>
-                                                                </div>
-                                                            <h2><a href="#">@product.ProductName</a></h2>
-                                                            </div>
-                                                        </figcaption>
-                                                    </figure>
-                                                </div>
-                                            </div>
-                                        }
-                                    }
+                                <div class="col-xs-12">
+                                    <div class="lz-heading text-center">
+                                        <h1 class="lz-main-heading  wow bounceIn animated "><span class="lz-brand">@Model.Home.BusinessName</span></h1>
+                                        <p class="lz-sub-heading wow slideInRight">@Model.Home.ShopTagSubLine</p>
+                                    </div>
+                                </div>
+                            </div> <!-- //ROW headertop-->
+                            <!-- Start Countdown row -->
+                            <br /><br /><br />
 
+                            <div class="row">
+                                <div class="col-xs-12">
+                                    <div class="lz-socialnetwork wow slideInLeft animated">
+                                        <ul class="list-unstyled list-inline text-center lz-social">
+                                            <li><a href="@Model.Home.FacebookLink"><span class="lz-facebook lz-social-list" data-toggle="tooltip" data-placement="top" title="Facebook" data-template='<div class="tooltip lz-tooltip" role="tooltip"><div class="tooltip-arrow lz-tooltip-arrow"></div><div class="tooltip-inner lz-tooltip-inner"></div></div>'><i class="fa fa-facebook"></i></span></a></li>
+                                            <li><a href="@Model.Home.TwitterLink"><span class="lz-twitter lz-social-list" data-toggle="tooltip" data-placement="top" title="Twitter" data-template='<div class="tooltip lz-tooltip" role="tooltip"><div class="tooltip-arrow lz-tooltip-arrow"></div><div class="tooltip-inner lz-tooltip-inner"></div></div>'><i class="fa fa-twitter"></i></span></a></li>
+                                            <li><a href="@Model.Home.LinkdInLink"><span class="lz-linkedin lz-social-list" data-toggle="tooltip" data-placement="top" title="Linkedin" data-template='<div class="tooltip lz-tooltip" role="tooltip"><div class="tooltip-arrow lz-tooltip-arrow"></div><div class="tooltip-inner lz-tooltip-inner"></div></div>'><i class="fa fa-linkedin"></i></span></a></li>
+                                        </ul>
+                                    </div>
                                 </div>
                             </div>
-                            <div class="modal fade portfolioModal" id="portfolioModal1" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
-                                <div class="modal-dialog modal-lg">
-                                    <div class="modal-content">
-                                        <div class="modal-header">
-                                            <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true"><i class="fa fa-times"></i></span></button>
+                        </div> 
+                    </div>
+                </div>
+                }
+            </header>
+
+            <!-- ************* ABOUT US SECTION  ************* -->
+            <section id="about">
+                <div id="cbx-aboutus" class="cbx-section cbx-aboutus">
+                    <div class="cbx-inner">
+                        <div class="container">
+                            <div class="text-center cbx-content">
+                                <div class="row">
+                                    <div class="col-sm-12">
+                                        <div class="cbx-heading">
+                                            <h2 class="uppercase wow fadeInUp">About Us</h2>
+                                            <hr noshade size="" width="" color="">
                                         </div>
-                                        <div class="modal-body">
+                                        <div>
                                             <div class="row">
-                                                <div class="col-xs-12 col-sm-6 col-md-4 col-lg-3">
+                                                <div class="col-sm-7">
+                                                    <div class="cbx-about-text text-right xs-text-center">
+                                                        <p>
+                                                            @Model.Home.ShopAboutUs
+                                                        </p>
+                                                        <span></span>
+                                                    </div>
                                                 </div>
-                                                <div class="col-xs-12 col-sm-6 col-md-4 col-lg-3">
-                                                    <div class="portfolio-details">
-                                                        <h3></h3>
-                                                        <p></p>
-                                                        <strong>Client: <a href="##CLLINK##">##CLNAME##</a></strong> <br>
-                                                        <strong>Service: ##SERVICE##</strong> <br>
+                                                @if (Model.Home.HeaderImage2 != null)
+                                            {
+                                                string ImageName = string.Format("http://www.whopperbay.com/shop/{0}/{1}", Model.Home.WebBusinessName, Model.Home.HeaderImage2);
+                                                    <div class="col-sm-5">
+                                                        <div class="about-img">
+                                                            <img src="@ImageName " alt="@Model.Home.BusinessName-Online Store" />
+                                                        </div>
+                                                    </div>
+                                            }
+                                            </div>
+                                            <div class="row">
+                                                <div class="col-xs-12 col-sm-6 col-md-3">
+                                                    <div class="cbx-single-item cbx-single-all">
+                                                        <i class="fa fa-laptop single-fa"></i>
+                                                        <h5>@Model.Home.ShopValue1Tittle</h5>
+                                                        <p>
+                                                            @Model.Home.ShopValue1Desc
+                                                        </p>
+                                                        <a href="@Model.Home.FacebookLink">know more<i class="fa fa-angle-right"></i></a>
+                                                    </div>
+                                                </div>
+                                                <div class="col-xs-12 col-sm-6 col-md-3">
+                                                    <div class="cbx-single-item cbx-single-all">
+                                                        <i class="fa fa-users single-fa"></i>
+                                                        <h5>@Model.Home.ShopValue2Tittle</h5>
+                                                        <p>
+                                                            @Model.Home.ShopValue2Desc
+                                                        </p>
+                                                        <a href="@Model.Home.FacebookLink">know more<i class="fa fa-angle-right"></i></a>
+                                                    </div>
+                                                </div>
+                                                <div class="col-xs-12 col-sm-6 col-md-3">
+                                                    <div class="cbx-single-item cbx-single-all">
+                                                        <i class="fa fa-tablet single-fa"></i>
+                                                        <h5>@Model.Home.ShopValue3Tittle</h5>
+                                                        <p>
+                                                            @Model.Home.ShopValue3Desc
+                                                        </p>
+                                                        <a href="@Model.Home.FacebookLink">know more<i class="fa fa-angle-right"></i></a>
+                                                    </div>
+                                                </div>
+                                                <div class="col-xs-12 col-sm-6 col-md-3">
+                                                    <div class="cbx-single-item cbx-single-all">
+                                                        <i class="fa fa-eye single-fa"></i>
+                                                        <h5>@Model.Home.ShopValue4Tittle</h5>
+                                                        <p>
+                                                            @Model.Home.ShopValue4Desc
+                                                        </p>
+                                                        <a href="@Model.Home.FacebookLink">know more<i class="fa fa-angle-right"></i></a>
                                                     </div>
                                                 </div>
                                             </div>
@@ -265,77 +188,159 @@
                                     </div>
                                 </div>
                             </div>
-                        </div> 
-                    </div> 
+                        </div>
+                    </div>
                 </div>
-            </div>
-        </section>
+            </section>
 
-        <!-- ************* AWARD  SECTION  ************* -->
-        <section id="award">
-            @if (Model.Awards != null)
-            {
-                <div id="cbx-award" class="cbx-section cbx-award">
+            <!-- ************* Product SECTION  ************* -->
+            <section id="product">
+                <div id="cbx-portfolio" class="cbx-section cbx-portfolio">
                     <div class="cbx-inner">
                         <div class="container">
                             <div class="text-center cbx-content">
-                                <div class="row">
-                                    <div class="col-xs-12 col-sm-6 col-md-3">
-                                        <div class="cbx-counter-area cbx-single-all  wow rollIn cbx-single-award">
-                                            <i class="fa fa-users cbx-award-float"></i>
-                                            <span class="cbx-counter cbx-award-float">@Model.Awards.HappyClients+</span>
-                                            <span class="cbx-award-float">Happy Clients</span>
-                                        </div>
-                                    </div> <!--//.COL-->
-                                    <div class="col-xs-12 col-sm-6 col-md-3">
-                                        <div class="cbx-counter-area cbx-single-all wow fadeInUp cbx-single-award  ">
-                                            <i class="fa fa-facebook cbx-award-float"></i>
-                                            <span class="cbx-counter cbx-award-float">@Model.Awards.FacebookLikes+</span>
-                                            <span class="cbx-award-float">Facebook Likes</span>
-                                        </div>
-                                    </div> <!--//.COL-->
-                                    <div class="col-xs-12 col-sm-6 col-md-3">
-                                        <div class="cbx-counter-area cbx-single-all wow fadeInUp  cbx-single-award ">
-                                            <i class="fa fa-trophy cbx-award-float"></i>
-                                            <span class="cbx-counter cbx-award-float">@Model.Awards.Awards</span>
-                                            <span class="cbx-award-float">Awards</span>
-                                        </div>
-                                    </div> <!--//.COL-->
-                                    <div class="col-xs-12 col-sm-6 col-md-3">
-                                        <div class="cbx-counter-area cbx-single-all wow bounceInRight cbx-single-award ">
-                                            <i class="fa fa-twitter cbx-award-float"></i>
-                                            <span class="cbx-counter cbx-award-float">@Model.Awards.Followers</span>
-                                            <span class="cbx-award-float">Followers</span>
-                                        </div>
-                                    </div> <!--//.COL-->
-                                </div> <!--//.ROW-->
-                            </div> <!--//. CBX CONTENT CONTENT-->
-                        </div> <!--//.CONAINER-->
-                    </div><!--//.CBX INNER-->
-                </div><!--//.CBX SECTION -->}
-        </section>
+                                <div class="cbx-heading">
+                                    <h2 class="uppercase wow fadeInUp">Products</h2>
+                                    <hr noshade size="" width="" color="">
+                                </div>
+                                <div class="select-area work-filter text-center">
+                                    <ul class="list-inline cbx-select" id="filter">
 
-        <!-- ************* OFFERS SECTION  ************* -->
-        <section id="offers">
-            @if (Model.Discounts != null)
+                                        @if (Model.ShopCategory != null)
+                                    {
+                                            <li><a class="active" data-group="all">All</a></li>
+                                        foreach (var catgory in Model.ShopCategory)
+                                        {
+                                                <li><a data-group="@catgory">@catgory</a></li>
+                                        }
+                                    }
+                                    </ul>
+                                </div>
+                                <div class="row">
+                                    <div id="grid">
+
+                                        @if (Model.Products != null)
+                                    {
+                                        string ImageAddress = string.Empty;
+                                        foreach (var product in Model.Products)
+                                        {
+                                            ImageAddress = string.Format("http://www.whopperbay.com/shop/{0}/{1}/{2}", Model.Home.WebBusinessName, product.FolderName, product.ProductImageName);
+                                                <div class="portfolio-item col-xs-12 col-sm-6 col-sm-4" data-groups='["all", "@product.FolderName"]'>
+                                                    <div class="single-portfolio">
+                                                        <figure class="item-figure">
+                                                            <img src="@ImageAddress" alt="">
+                                                            <figcaption class="figure-caption">
+                                                                <div class="figure-info">
+                                                                    <div class="figure-link">
+                                                                        <a data-title="@product.ProductName" data-content="@product.ProductDesc" data-clink="#" data-cname="@product.ProductPrice" data-service="@product.ProductStar" data-image="@ImageAddress" href="#">
+                                                                            <i class="fa fa-link"></i>
+                                                                        </a>
+                                                                    </div>
+                                                                    <h2><a href="#">@product.ProductName</a></h2>
+                                                                </div>
+                                                            </figcaption>
+                                                        </figure>
+                                                    </div>
+                                                </div>
+                                        }
+                                    }
+
+                                    </div>
+                                </div>
+                                <div class="modal fade portfolioModal" id="portfolioModal1" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+                                    <div class="modal-dialog modal-lg">
+                                        <div class="modal-content">
+                                            <div class="modal-header">
+                                                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true"><i class="fa fa-times"></i></span></button>
+                                            </div>
+                                            <div class="modal-body">
+                                                <div class="row">
+                                                    <div class="col-xs-12 col-sm-6">
+                                                    </div>
+                                                    <div class="col-xs-12 col-sm-6">
+                                                        <div class="portfolio-details">
+                                                            <h3></h3>
+                                                            <p></p>
+                                                            <strong>Client: <a href="##CLLINK##">##CLNAME##</a></strong> <br>
+                                                            <strong>Service: ##SERVICE##</strong> <br>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- ************* AWARD  SECTION  ************* -->
+            <section id="award">
+                @if (Model.Awards != null)
             {
-                <div id="cbx-pricing" class="cbx-section cbx-pricing">
-                    <div class="cbx-inner">
-                        <div class="container">
-                            <div class="text-center cbx-content">
-                                <div class="row">
-                                    <div class="col-sm-12">
-                                        <div class="cbx-heading">
-                                            <h2 class="uppercase wow fadeInUp">Store Offers</h2>
-                                            <hr noshade size="" width="" color="">
-                                            <p class=" wow fadeInDown">
-                                                @Model.Home.ShopOffersTagLine
-                                            </p>
-                                        </div>
-                                        <div>
-                                            <div class="row">
+                    <div id="cbx-award" class="cbx-section cbx-award">
+                        <div class="cbx-inner">
+                            <div class="container">
+                                <div class="text-center cbx-content">
+                                    <div class="row">
+                                        <div class="col-xs-12 col-sm-6 col-md-3">
+                                            <div class="cbx-counter-area cbx-single-all  wow rollIn cbx-single-award">
+                                                <i class="fa fa-users cbx-award-float"></i>
+                                                <span class="cbx-counter cbx-award-float">@Model.Awards.HappyClients+</span>
+                                                <span class="cbx-award-float">Happy Clients</span>
+                                            </div>
+                                        </div> <!--//.COL-->
+                                        <div class="col-xs-12 col-sm-6 col-md-3">
+                                            <div class="cbx-counter-area cbx-single-all wow fadeInUp cbx-single-award  ">
+                                                <i class="fa fa-facebook cbx-award-float"></i>
+                                                <span class="cbx-counter cbx-award-float">@Model.Awards.FacebookLikes+</span>
+                                                <span class="cbx-award-float">Facebook Likes</span>
+                                            </div>
+                                        </div> <!--//.COL-->
+                                        <div class="col-xs-12 col-sm-6 col-md-3">
+                                            <div class="cbx-counter-area cbx-single-all wow fadeInUp  cbx-single-award ">
+                                                <i class="fa fa-trophy cbx-award-float"></i>
+                                                <span class="cbx-counter cbx-award-float">@Model.Awards.Awards</span>
+                                                <span class="cbx-award-float">Awards</span>
+                                            </div>
+                                        </div> <!--//.COL-->
+                                        <div class="col-xs-12 col-sm-6 col-md-3">
+                                            <div class="cbx-counter-area cbx-single-all wow bounceInRight cbx-single-award ">
+                                                <i class="fa fa-twitter cbx-award-float"></i>
+                                                <span class="cbx-counter cbx-award-float">@Model.Awards.Followers</span>
+                                                <span class="cbx-award-float">Followers</span>
+                                            </div>
+                                        </div> <!--//.COL-->
+                                    </div> <!--//.ROW-->
+                                </div> <!--//. CBX CONTENT CONTENT-->
+                            </div> <!--//.CONAINER-->
+                        </div><!--//.CBX INNER-->
+                    </div><!--//.CBX SECTION -->}
+            </section>
 
-                                                @if (Model.Discounts != null)
+            <!-- ************* OFFERS SECTION  ************* -->
+            <section id="offers">
+                @if (Model.Discounts != null)
+            {
+                    <div id="cbx-pricing" class="cbx-section cbx-pricing">
+                        <div class="cbx-inner">
+                            <div class="container">
+                                <div class="text-center cbx-content">
+                                    <div class="row">
+                                        <div class="col-sm-12">
+                                            <div class="cbx-heading">
+                                                <h2 class="uppercase wow fadeInUp">Store Offers</h2>
+                                                <hr noshade size="" width="" color="">
+                                                <p class=" wow fadeInDown">
+                                                    @Model.Home.ShopOffersTagLine
+                                                </p>
+                                            </div>
+                                            <div>
+                                                <div class="row">
+
+                                                    @if (Model.Discounts != null)
                                                 {
                                                     int count = 0;
                                                     string classname = string.Empty;
@@ -345,33 +350,34 @@
                                                         else if (count == 1) { classname = "single-pricing cbx-single-all recommended-pricing wow fadeInUp"; }
                                                         else if (count == 2) { classname = "single-pricing cbx-single-all wow fadeInRight"; }
                                                         count++;
-                                                        <div class="col-xs-12 col-sm-4 xs-text-center">
-                                                            <div class="@classname">
-                                                                <div class="spricing-top">
-                                                                    <h3>@discount.keyword</h3>
-                                                                    <p>@discount.discount% Off</p>
-                                                                </div>
-                                                                <ul class="list-unstyled text-center">
-                                                                    <li><strong>@discount.offer</strong>@discount.AdditionalDetails</li>
-                                                                    <li>
-                                                                        <small>
-                                                                            Valid from @discount.validFrom till @discount.validTill
-                                                                        </small><br>
-                                                                    </li>
-                                                                    <li>
-                                                                        <small>
-                                                                            * Conditions and restrictions apply.
-                                                                        </small>
-                                                                    </li>
+                                                            <div class="col-xs-12 col-sm-4 xs-text-center">
+                                                                <div class="@classname">
+                                                                    <div class="spricing-top">
+                                                                        <h3>@discount.keyword</h3>
+                                                                        <p>@discount.discount% Off</p>
+                                                                    </div>
+                                                                    <ul class="list-unstyled text-center">
+                                                                        <li><strong>@discount.offer</strong>@discount.AdditionalDetails</li>
+                                                                        <li>
+                                                                            <small>
+                                                                                Valid from @discount.validFrom till @discount.validTill
+                                                                            </small><br>
+                                                                        </li>
+                                                                        <li>
+                                                                            <small>
+                                                                                * Conditions and restrictions apply.
+                                                                            </small>
+                                                                        </li>
 
-                                                                </ul>
-                                                                <div class="spricing-bottom">
-                                                                    <a href="#contact">Contact Now <i class="fa fa-angle-right"></i></a>
+                                                                    </ul>
+                                                                    <div class="spricing-bottom">
+                                                                        <a href="#contact">Contact Now <i class="fa fa-angle-right"></i></a>
+                                                                    </div>
                                                                 </div>
                                                             </div>
-                                                        </div>
                                                     }
                                                 }
+                                                </div>
                                             </div>
                                         </div>
                                     </div>
@@ -379,101 +385,100 @@
                             </div>
                         </div>
                     </div>
-                </div>
             }
-        </section>
+            </section>
 
-        <!-- ************* TEAM SECTION  ************* -->
-        <section id="team">
-            <div id="cbx-team" class="cbx-section cbx-team">
-                <div class="cbx-team-inner">
-                    <div class="container">
-                        <div class="row">
-                            <div class="col-sm-12">
-                                <div class="cbx-heading text-center">
-                                    <h2 class="uppercase wow fadeInUp">Our Team</h2>
-                                    <hr noshade size="" width="" color="">
-                                    <p class=" wow flipInY">@Model.Home.ShopTeamTagLine</p>
+            <!-- ************* TEAM SECTION  ************* -->
+            <section id="team">
+                <div id="cbx-team" class="cbx-section cbx-team">
+                    <div class="cbx-team-inner">
+                        <div class="container">
+                            <div class="row">
+                                <div class="col-sm-12">
+                                    <div class="cbx-heading text-center">
+                                        <h2 class="uppercase wow fadeInUp">Our Team</h2>
+                                        <hr noshade size="" width="" color="">
+                                        <p class=" wow flipInY">@Model.Home.ShopTeamTagLine</p>
+                                    </div>
                                 </div>
                             </div>
-                        </div>
-                        <div class="row">
+                            <div class="row">
 
-                            @if (Model.TeamMembers != null)
+                                @if (Model.TeamMembers != null)
                             {
                                 string ImageAddress;
                                 foreach (var Member in Model.TeamMembers)
                                 {
                                     ImageAddress = string.Format("http://www.tutorialspoint.com/about/images/{0}", Member.PersonImage);
 
-                                    <div class="col-xs-12 col-sm-6 col-md-4 col-lg-3">
-                                        <div class="cbx-single-team text-center">
-                                            <div class="flip-container" ontouchstart="this.classList.toggle('hover');">
-                                                <div class="flipper">
-                              
-                                                    <div class="front cbx-font-side">
-                                                        <div class="font-single-img text-center">
-                                                            <img class="img-circle" src="@ImageAddress" alt="@Model.Home.BusinessName - @Member.PersonDesignation">
-                                                        </div>
-                                                        <div class="font-single-text text-center">
-                                                            <h3>@Member.PersonName</h3>
-                                                            <h4>@Member.PersonDesignation</h4>
-                                                            <p>@Member.PersonRole</p>
-                                                        </div>
-                                                    </div> 
-                                                    <div class="back cbx-back-side">
-                                                        <div class="text-center">
-                                                            <div class="cbx-member-social">
-                                                                <a target="_blank" href="#@Member.FacebookLink">
-                                                                    <i class="fa fa-2x fa-facebook-square "></i>
-                                                                </a>
-                                                                <a target="_blank" href="#@Member.TwitterLink">
-                                                                    <i class="fa fa-2x fa-twitter-square "></i>
-                                                                </a>
-                                                                <a target="_blank" href="#@Member.LinkdInLink">
-                                                                    <i class="fa fa-2x fa-linkedin-square "></i>
-                                                                </a>
+                                        <div class="col-xs-12 col-sm-6 col-md-4 col-lg-3">
+                                            <div class="cbx-single-team text-center">
+                                                <div class="flip-container" ontouchstart="this.classList.toggle('hover');">
+                                                    <div class="flipper">
+
+                                                        <div class="front cbx-font-side">
+                                                            <div class="font-single-img text-center">
+                                                                <img class="img-circle" src="@ImageAddress" alt="@Model.Home.BusinessName - @Member.PersonDesignation">
                                                             </div>
-                                                            <div class="text-center back-single-text">
-                                                                <p>
-                                                                    @Member.PersonRole
-                                                            </p>
+                                                            <div class="font-single-text text-center">
+                                                                <h3>@Member.PersonName</h3>
+                                                                <h4>@Member.PersonDesignation</h4>
+                                                                <p>@Member.PersonRole</p>
+                                                            </div>
+                                                        </div>
+                                                        <div class="back cbx-back-side">
+                                                            <div class="text-center">
+                                                                <div class="cbx-member-social">
+                                                                    <a target="_blank" href="#@Member.FacebookLink">
+                                                                        <i class="fa fa-2x fa-facebook-square "></i>
+                                                                    </a>
+                                                                    <a target="_blank" href="#@Member.TwitterLink">
+                                                                        <i class="fa fa-2x fa-twitter-square "></i>
+                                                                    </a>
+                                                                    <a target="_blank" href="#@Member.LinkdInLink">
+                                                                        <i class="fa fa-2x fa-linkedin-square "></i>
+                                                                    </a>
+                                                                </div>
+                                                                <div class="text-center back-single-text">
+                                                                    <p>
+                                                                        @Member.PersonRole
+                                                                    </p>
+                                                                </div>
+                                                            </div>
                                                         </div>
                                                     </div>
                                                 </div>
                                             </div>
                                         </div>
-                                    </div>
-                                </div> 
                                 }
                             }
-                        </div> 
-                    </div> 
-                </div> 
-            </div> 
-        </section> 
-
-        <!-- ************* TESTIMONIALS SECTION  ************* -->
-        <section id="testimonials">
-            <div class="cbx-testimonials">
-                <div class="container">
-                    <div class="row">
-                        <div class="col-xs-12">
-                            <div class="cbx-heading text-center">
-                                <h2 class="uppercase wow fadeInUp">Testimonials</h2>
-                                <hr noshade size="" width="" color="">
-                                <p class=" wow fadeInDown">
-                                    @Model.Home.ShopTestimonialsTagLine
-                                </p>
                             </div>
                         </div>
                     </div>
-                    <div class="row">
-                        <div class="carousel-reviews broun-block">
-                            <div id="cbstepreviews" data-interval="3000" data-type="multi" data-ride="carousel" class="carousel cbstepcarousel slide carousel-fade">
-                                <div data-percol="3" class="carousel-inner carousel-inner-multi">
+                </div>
+            </section>
 
-                                    @if (Model.Testimonials != null)
+            <!-- ************* TESTIMONIALS SECTION  ************* -->
+            <section id="testimonials">
+                <div class="cbx-testimonials">
+                    <div class="container">
+                        <div class="row">
+                            <div class="col-xs-12">
+                                <div class="cbx-heading text-center">
+                                    <h2 class="uppercase wow fadeInUp">Testimonials</h2>
+                                    <hr noshade size="" width="" color="">
+                                    <p class=" wow fadeInDown">
+                                        @Model.Home.ShopTestimonialsTagLine
+                                    </p>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="carousel-reviews broun-block">
+                                <div id="cbstepreviews" data-interval="3000" data-type="multi" data-ride="carousel" class="carousel cbstepcarousel slide carousel-fade">
+                                    <div data-percol="3" class="carousel-inner carousel-inner-multi">
+
+                                        @if (Model.Testimonials != null)
                                     {
                                         string className = string.Empty;
                                         string ImageAddress = string.Empty;
@@ -486,160 +491,150 @@
                                             { className = "item "; }
                                             count++;
                                             ImageAddress = string.Format("http://www.tutorialspoint.com/about/images/{0}", Testimonial.CustomerImage);
-                                            <div class="@className">
-                                                <div class="col-md-4 col-sm-6 col-xs-12">
-                                                    <div class="cbx-block-text rel zmin text-center">
-                                                        <a title="" href="#">@Testimonial.CustomerLiked</a>
-                                                        <div class="mark">
-                                                            <span class="rating-input">
-                                                                @for (int i = 0; i < Testimonial.CustomerStar; i++)
+                                                <div class="@className">
+                                                    <div class="col-md-4 col-sm-6 col-xs-12">
+                                                        <div class="cbx-block-text rel zmin text-center">
+                                                            <a title="" href="#">@Testimonial.CustomerLiked</a>
+                                                            <div class="mark">
+                                                                <span class="rating-input">
+                                                                    @for (int i = 0; i < Testimonial.CustomerStar; i++)
                                                                 {
-                                                                    <span data-value="@i" class="glyphicon glyphicon-star"></span>}
+                                                                        <span data-value="@i" class="glyphicon glyphicon-star"></span>}
 
-                                                                @for (int i = Testimonial.CustomerStar ; i < 5; i++)
+                                                                    @for (int i = Testimonial.CustomerStar; i < 5; i++)
                                                                 {
-                                                                    <span data-value="@i" class="glyphicon glyphicon-star-empty"></span>}
+                                                                        <span data-value="@i" class="glyphicon glyphicon-star-empty"></span>}
 
-                                                            </span>
+                                                                </span>
+                                                            </div>
+                                                            <p>
+                                                                @Testimonial.CustomerWords
+                                                            </p>
+                                                            <ins class="cbx-ab zmin sprite sprite-i-triangle block"></ins>
                                                         </div>
-                                                        <p>
-                                                            @Testimonial.CustomerWords
-                                                        </p>
-                                                        <ins class="cbx-ab zmin sprite sprite-i-triangle block"></ins>
-                                                    </div>
-                                                    <div class="cbx-person-text rel">
-                                                        <img src="@ImageAddress" class="img-circle" alt="test">
-                                                        <a title="" href="#@Testimonial.CustomerFacebook">@Testimonial.CustomerName</a>
-                                                        <i>from @Testimonial.CustomerFrom</i>
+                                                        <div class="cbx-person-text rel">
+                                                            <img src="@ImageAddress" class="img-circle" alt="test">
+                                                            <a title="" href="#@Testimonial.CustomerFacebook">@Testimonial.CustomerName</a>
+                                                            <i>from @Testimonial.CustomerFrom</i>
+                                                        </div>
                                                     </div>
                                                 </div>
-                                            </div> 
-                                            
+
                                         }
                                     }
+                                    </div>
+                                    <a class="left carousel-control cbx-slider-arrow" href="#cbstepreviews" role="button" data-slide="prev">
+                                        <span><img class="" src="img/arrows_left.png" alt="" /></span>
+                                    </a>
+                                    <a class="right carousel-control cbx-slider-arrow" href="#cbstepreviews" role="button" data-slide="next">
+                                        <span><img class="" src="img/arrows_right.png" alt="" /></span>
+                                    </a>
+
+                                    <ol class="carousel-indicators cbx-carousel-indicators hidden-lg hidden-md hidden-sm">
+                                        <li data-target="#cbstepreviews" data-slide-to="0" class="active"></li>
+                                        <li data-target="#cbstepreviews" data-slide-to="1"></li>
+                                        <li data-target="#cbstepreviews" data-slide-to="2"></li>
+                                    </ol>
                                 </div>
-                                <a class="left carousel-control cbx-slider-arrow" href="#cbstepreviews" role="button" data-slide="prev">
-                                    <span><img class="" src="img/arrows_left.png" alt="" /></span>
-                                </a>
-                                <a class="right carousel-control cbx-slider-arrow" href="#cbstepreviews" role="button" data-slide="next">
-                                    <span><img class="" src="img/arrows_right.png" alt="" /></span>
-                                </a>
-                                
-                                <ol class="carousel-indicators cbx-carousel-indicators hidden-lg hidden-md hidden-sm">
-                                    <li data-target="#cbstepreviews" data-slide-to="0" class="active"></li>
-                                    <li data-target="#cbstepreviews" data-slide-to="1"></li>
-                                    <li data-target="#cbstepreviews" data-slide-to="2"></li>
-                                </ol>
-                            </div>
-                        </div> 
-                    </div>
-                </div>
-            </div> 
-        </section>
-
-        <div class="clearfix" style="margin-top:15px;"></div>
-
-        <!-- ************* CONTACT SECTION  ************* -->
-        <section id="contact">
-            <div class="cbx-contact-area">
-                <div class="container">
-                    <div class="row">
-                        <div class="col-xs-12">
-                            <div class="cbx-heading text-center">
-                                <h2 class="uppercase wow fadeInUp">Get in Touch</h2>
-                                <hr noshade size="" width="" color="">
-                                <p class=" wow fadeInDown">@Model.Home.ShopContactTagLine</p>
                             </div>
                         </div>
                     </div>
                 </div>
-                <div class="cbx-contactform-area">
-                    <div class="cbx-contactform-inner">
-                        <div class="container">
-                            <div class="row">
-                                <div class="col-sm-6 xs-text-center wow fadeInUp ">
-                                    <div class="cbx-cform-area">
-                                        <form method="POST" class="form-horizontal lz-contact-form cbx-contactform" role="form" action="#">
-                                            <div class="form-group">
-                                                <div class="col-sm-10 col-sm-offset-1">
-                                                    <input type="text" name="cbxname" class="form-control cbxname lz-git-form-control placeholder-style" id="cbxname" placeholder="Enter Your Name" required>
-                                                    <label id="cbxname-error" class="error valid" for="cbxname"></label>
+            </section>
+
+            <div class="clearfix" style="margin-top:15px;"></div>
+
+            <!-- ************* CONTACT SECTION  ************* -->
+            <section id="contact">
+                <div class="cbx-contact-area">
+                    <div class="container">
+                        <div class="row">
+                            <div class="col-xs-12">
+                                <div class="cbx-heading text-center">
+                                    <h2 class="uppercase wow fadeInUp">Get in Touch</h2>
+                                    <hr noshade size="" width="" color="">
+                                    <p class=" wow fadeInDown">@Model.Home.ShopContactTagLine</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="cbx-contactform-area">
+                        <div class="cbx-contactform-inner">
+                            <div class="container">
+                                <div class="row">
+                                    <div class="col-sm-6 xs-text-center wow fadeInUp ">
+                                        <div class="cbx-cform-area">
+                                            <form method="POST" class="form-horizontal lz-contact-form cbx-contactform" role="form" action="#">
+                                                <div class="form-group">
+                                                    <div class="col-sm-10 col-sm-offset-1">
+                                                        <input type="text" name="cbxname" class="form-control cbxname lz-git-form-control placeholder-style" id="cbxname" placeholder="Enter Your Name" required>
+                                                        <label id="cbxname-error" class="error valid" for="cbxname"></label>
+                                                    </div>
                                                 </div>
-                                            </div>
-                                            <div class="form-group">
-                                                <div class="col-sm-10 col-sm-offset-1">
-                                                    <input type="text" name="cblxphone" class="form-control lz-git-form-control placeholder-style" id="cbxphone" placeholder="Phone" />
-                                                    <label id="cbxphone-error" class="error valid" for="cbxphone"></label>
+                                                <div class="form-group">
+                                                    <div class="col-sm-10 col-sm-offset-1">
+                                                        <input type="text" name="cblxphone" class="form-control lz-git-form-control placeholder-style" id="cbxphone" placeholder="Phone" />
+                                                        <label id="cbxphone-error" class="error valid" for="cbxphone"></label>
+                                                    </div>
                                                 </div>
-                                            </div>
-                                            <div class="form-group">
-                                                <div class="col-sm-10 col-sm-offset-1">
-                                                    <input type="email" name="cbxemail" class="form-control cbxemail lz-git-form-control placeholder-style" id="cbxemail" placeholder="Enter email" required>
-                                                    <label id="cbxemail-error" class="error valid" for="cbxemail"></label>
+                                                <div class="form-group">
+                                                    <div class="col-sm-10 col-sm-offset-1">
+                                                        <input type="email" name="cbxemail" class="form-control cbxemail lz-git-form-control placeholder-style" id="cbxemail" placeholder="Enter email" required>
+                                                        <label id="cbxemail-error" class="error valid" for="cbxemail"></label>
+                                                    </div>
                                                 </div>
-                                            </div>
-                                            <div class="form-group">
-                                                <div class="col-sm-10 col-sm-offset-1">
-                                                    <textarea name="textarea_2" id="textarea_2" class="form-control cbxmessage lz-git-form-control placeholder-style" name="cbxmessage" id="cbxmessage" rows="6" placeholder="Enter Text" required></textarea>
-                                                    <label id="cbxmessage-error" class="error valid" for="cbxmessage"></label>
+                                                <div class="form-group">
+                                                    <div class="col-sm-10 col-sm-offset-1">
+                                                        <textarea name="textarea_2" id="textarea_2" class="form-control cbxmessage lz-git-form-control placeholder-style" name="cbxmessage" id="cbxmessage" rows="6" placeholder="Enter Text" required></textarea>
+                                                        <label id="cbxmessage-error" class="error valid" for="cbxmessage"></label>
+                                                    </div>
                                                 </div>
-                                            </div>
-                                            <div class="form-group">
-                                                <div class="col-sm-10 col-sm-offset-1">
-                                                    <label>
-                                                        <input name="cbxsendme" type="checkbox"> Send me a Copy
-                                                    </label>
+                                                <div class="form-group">
+                                                    <div class="col-sm-10 col-sm-offset-1">
+                                                        <label>
+                                                            <input name="cbxsendme" type="checkbox"> Send me a Copy
+                                                        </label>
+                                                    </div>
                                                 </div>
-                                            </div>
-                                            <div class="col-sm-10 col-sm-offset-1 xs-text-center cbx-submit-area">
-                                                <button type="submit" name="submit" class="btn btn-block lz-git-submit-btn cbx-submit">Send</button>
-                                            </div>
-                                        </form>
+                                                <div class="col-sm-10 col-sm-offset-1 xs-text-center cbx-submit-area">
+                                                    <button type="submit" name="submit" class="btn btn-block lz-git-submit-btn cbx-submit">Send</button>
+                                                </div>
+                                            </form>
+                                        </div>
+                                    </div>
+                                    <div class="col-sm-6 xs-text-center wow fadeInUp cbx-contact-info">
+                                        <h3>Contact Info</h3>
+                                        <hr />
+                                        <p>
+                                            @Model.Home.ShopContactDesc
+                                        </p>
+                                        <h3 class="cbx-address">Address</h3>
+                                        <hr class="hr" />
+                                        <address>
+
+                                            Mobile: @Model.Home.BusinessContact<br>
+                                            Email: @Model.Home.Email<br>
+                                            Complaint: @Model.Home.ComplaintContact<br>
+                                            @Model.Home.shopAddress
+                                        </address>
                                     </div>
                                 </div>
-                                <div class="col-sm-6 xs-text-center wow fadeInUp cbx-contact-info">
-                                    <h3>Contact Info</h3>
-                                    <hr />
-                                    <p>
-                                        @Model.Home.ShopContactDesc
-                                    </p>
-                                    <h3 class="cbx-address">Address</h3>
-                                    <hr class="hr" />
-                                    <address>
-
-                                        Mobile: @Model.Home.BusinessContact<br>
-                                        Email: @Model.Home.Email<br>
-                                        Complaint: @Model.Home.ComplaintContact<br>
-                                        @Model.Home.shopAddress
-                                    </address>
-                                </div>
                             </div>
                         </div>
                     </div>
                 </div>
-            </div>
-        </section>
+            </section>
 
-        <section>
-            <div class="container-fluid">
-                <div class="row">
-                    <div class="lz-map map_canvas" id="map_canvas"></div>
-                </div> <!-- //ROW -->
-            </div>
-        </section>
-
-       
-    </div>
-    <!-- if load google maps then load this api -->
-    <script type="text/javascript" src="https://maps.googleapis.com/maps/api/js?v=3.exp"></script>   
-    <script type="text/javascript" src="~/OnlineShop/js/grid.js"></script>    
-    <script type="text/javascript" src="~/OnlineShop/js/wow.min.js"></script>
-    <script type="text/javascript" src="~/OnlineShop/js/bootstrap.min.js"></script>
-    <script type="text/javascript" src="~/OnlineShop/js/kkcountdown.min.js"></script>
-    <script type="text/javascript" src="~/OnlineShop/js/imagesloaded.pkgd.min.js"></script>
+        </div>        
+        <script type="text/javascript" src="https://maps.googleapis.com/maps/api/js?v=3.exp"></script>
+        <script type="text/javascript" src="~/OnlineShop/js/grid.js"></script>
+        <script type="text/javascript" src="~/OnlineShop/js/wow.min.js"></script>
+        <script type="text/javascript" src="~/OnlineShop/js/bootstrap.min.js"></script>
+        <script type="text/javascript" src="~/OnlineShop/js/kkcountdown.min.js"></script>
+        <script type="text/javascript" src="~/OnlineShop/js/imagesloaded.pkgd.min.js"></script>
 
 
-    
+
 </body>
 
 </html>

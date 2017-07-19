@@ -158,7 +158,7 @@ li.cbxgrid-item-none {
   display: none;
 }
 #lz-headertop {
-  background: url('../img/header.jpg') center center no-repeat fixed;
+  
   -webkit-background-size: cover;
   -o-background-size: cover;
   -moz-background-size: cover;

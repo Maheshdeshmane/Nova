@@ -23,7 +23,7 @@
 
 
 jQuery(document).ready(function ($) {
-    var $modaltpl = '<div class="row">    <div class="col-xs-6">        <img alt="" src="##IMG##" class="img-responsive" >    </div>    <div class="col-xs-6">        <div>            <h3>##TITLE##</h3>            <p align="left">##CONTENT##</p>         <p align="left">   <strong>Price: ##CLNAME##</a></strong> <br>            <p align="left"><div align="left"> ##SERVICE##</div></p> <br>        </div> <br> <div>  <div class="input-group input-group-lg"><input type="text" class="form-control" placeholder="Your Mobile No."/><div class="input-group-btn"><button type="submit" class="btn" ><span class="glyphicon glyphicon-send" id="sendbtn"></span></button></div></div> </div>   </div></div>';
+    var $modaltpl = '<div class="row">    <div class="col-xs-12 col-sm-6">        <img alt="" src="##IMG##" class="img-responsive" >    </div>    <div class="col-xs-12 col-sm-6">        <div>            <h3>##TITLE##</h3>            <p align="left">##CONTENT##</p>         <p align="left">   <strong>Price: ##CLNAME##</a></strong> <br>            <p align="left"><div align="left"> ##SERVICE##</div></p> <br>        </div> <br> <div>  <div class="input-group input-group-lg"><input type="text" class="form-control" placeholder="Your Mobile No."/><div class="input-group-btn"><button type="submit" class="btn" ><span class="glyphicon glyphicon-send" id="sendbtn"></span></button></div></div> </div>   </div></div>';
     
     var lz_path = window.location.protocol + '//' + window.location.host;
     var pathArray = window.location.pathname.split( '/' );
