@@ -20,7 +20,10 @@ namespace Nova.Controllers
         {
             BaseRequest _request = new BaseRequest();
             List<SelectListItem> catNames = new List<SelectListItem>();
-            ConnectionString = ConfigurationManager.ConnectionStrings["SQLDbConnection"].ToString();
+
+            if (string.IsNullOrEmpty(ConnectionString))
+                ConnectionString = ConfigurationManager.ConnectionStrings["SQLDbConnection"].ToString();
+
             List<Category> catList = GetCatgoryList();
             List<SubCatgory> objCat = new List<SubCatgory>();
             List<SubCatgory> subCatgory = GetSubCatgoryList();        
@@ -74,9 +77,10 @@ namespace Nova.Controllers
             OnlineShop onlineShop = new OnlineShop();
             onlineShop.Home = GetOnlineShopHomeDetails(ShopName);
 
-            if (onlineShop.Home == null)
+            if (onlineShop.Home.WebBusinessName == null)
             {
-                ///TODO- Return to homepage
+                ViewBag.StoreName = ShopName;
+                return View("NotValid");
             }
             onlineShop.Products = GetOnlineShopProductDetails(ShopName);
             onlineShop.TeamMembers = GetOnlineShopTeamMemberDetails(ShopName);
@@ -92,6 +96,13 @@ namespace Nova.Controllers
             
         }
 
+        [Route("Shop")]
+        public ActionResult Shop()
+        {
+            ViewBag.StoreName = "";
+            return View("NotValid");
+        }
+
         [HttpPost]
         public ActionResult home()
         {
@@ -99,7 +110,7 @@ namespace Nova.Controllers
             return Json("");
         }
 
-        public string ConnectionString { get; set; } = "data source=.\\SQLExpress;initial catalog=DisCheckOut;integrated security=True;";
+        public string ConnectionString { get; set; } = "data source=182.50.133.111;initial catalog=whopp4km_local;User ID=mahesh_admin;Password=dEshmane@123@db;";
         //<!--connectionString="data source=182.50.133.111;initial catalog=whopp4km_local;User ID=mahesh_admin;Password=dEshmane@123@db;"-->
         //Action result for ajax call
         [HttpPost]

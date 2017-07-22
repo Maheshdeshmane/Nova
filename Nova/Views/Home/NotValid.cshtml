@@ -1,0 +1,39 @@
+﻿
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>Whopperbay - Get the latest discount for your locality</title>
+    <meta name="description" content="Check the discounts by location, Find the discount,sale from shop or retailers from your locality. Visit the online shop any many more at whopperbay">
+    <meta name="keywords" content="Shopping,Online store,discount,sale,online shop,
+        sale on Men cloths,discount by location,offers,sale on women clothes,offers on electronic items">
+    <meta NAME="ROBOTS" CONTENT="INDEX, FOLLOW">
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+</head>
+<body>
+        <div class="container">
+            <div class="row">
+                <h1>Whopperbay</h1>
+                <br /><br />
+            </div>
+            <div class="row">
+                <div class="alert alert-danger"><strong>Error!</strong> Cannot find the Store @ViewBag.StoreName</div>
+            </div>
+            <div class="row">
+                <div class="alert alert-info">
+                    <strong>Info!</strong>
+                    Please enter valid shop name, or the shop you are looking for is not online yet
+                    <br>sorry for inconvenience
+                </div>
+            </div>
+        </div>
+</body>
+</html>

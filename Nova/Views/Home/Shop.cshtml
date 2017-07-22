@@ -44,9 +44,11 @@
     <script src="~/OnlineShop/js/vendor/modernizr-2.6.2.min.js"></script>
     <link rel="dns-prefetch" href="//ajax.googleapis.com">
 
+    <meta NAME="ROBOTS" CONTENT="INDEX, FOLLOW">
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 
 </head>
-<body data-spy="scroll" data-target="#myNavbar" data-offset="60" id="myPage">
+<body data-spy="scroll" data-target="#myNavbar" data-offset="60" id="home">
 
 
         <nav class="navbar navbar-default navbar-fixed-top">
@@ -57,7 +59,7 @@
                         <span class="icon-bar"></span>
                         <span class="icon-bar"></span>
                     </button>
-                    <a class="navbar-brand" href="#myPage">@Model.Home.BusinessName</a>
+                    <a class="navbar-brand" href="#home">@Model.Home.BusinessName</a>
                 </div>
                 <div class="collapse navbar-collapse" id="myNavbar">
                     <ul class="nav navbar-nav navbar-right">
@@ -479,18 +481,18 @@
                                     <div data-percol="3" class="carousel-inner carousel-inner-multi">
 
                                         @if (Model.Testimonials != null)
-                                    {
-                                        string className = string.Empty;
-                                        string ImageAddress = string.Empty;
-                                        int count = 0;
-                                        foreach (var Testimonial in Model.Testimonials)
                                         {
-                                            if (count == 0)
-                                            { className = "item active wow fadeInUp"; }
-                                            else
-                                            { className = "item "; }
-                                            count++;
-                                            ImageAddress = string.Format("http://www.tutorialspoint.com/about/images/{0}", Testimonial.CustomerImage);
+                                            string className = string.Empty;
+                                            string ImageAddress = string.Empty;
+                                            int count = 0;
+                                            foreach (var Testimonial in Model.Testimonials)
+                                            {
+                                                if (count == 0)
+                                                { className = "item active wow fadeInUp"; }
+                                                else
+                                                { className = "item "; }
+                                                count++;
+                                                ImageAddress = string.Format("http://www.whopperbay.in/shop/{0}/{1}", Model.Home.WebBusinessName, Testimonial.CustomerImage);
                                                 <div class="@className">
                                                     <div class="col-md-4 col-sm-6 col-xs-12">
                                                         <div class="cbx-block-text rel zmin text-center">
@@ -513,7 +515,7 @@
                                                             <ins class="cbx-ab zmin sprite sprite-i-triangle block"></ins>
                                                         </div>
                                                         <div class="cbx-person-text rel">
-                                                            <img src="@ImageAddress" class="img-circle" alt="test">
+                                                            <img src="@ImageAddress" class="img-circle" alt="test" height="100" width="100">
                                                             <a title="" href="#@Testimonial.CustomerFacebook">@Testimonial.CustomerName</a>
                                                             <i>from @Testimonial.CustomerFrom</i>
                                                         </div>
@@ -524,10 +526,10 @@
                                     }
                                     </div>
                                     <a class="left carousel-control cbx-slider-arrow" href="#cbstepreviews" role="button" data-slide="prev">
-                                        <span><img class="" src="img/arrows_left.png" alt="" /></span>
+                                        <span><img class="" src="http://www.whopperbay.in/shop/arrows_left.png" alt="" /></span>
                                     </a>
                                     <a class="right carousel-control cbx-slider-arrow" href="#cbstepreviews" role="button" data-slide="next">
-                                        <span><img class="" src="img/arrows_right.png" alt="" /></span>
+                                        <span><img class="" src="http://www.whopperbay.in/shop/arrows_right.png" alt="" /></span>
                                     </a>
 
                                     <ol class="carousel-indicators cbx-carousel-indicators hidden-lg hidden-md hidden-sm">
