@@ -67,7 +67,8 @@ namespace Nova.Controllers
             return View(_request);
         }
 
-        public ActionResult Shop(string ShopName="mayastore")
+        [Route("Shop/{ShopName}")]
+        public ActionResult Shop(string ShopName)
         {
 
             OnlineShop onlineShop = new OnlineShop();
@@ -98,7 +99,8 @@ namespace Nova.Controllers
             return Json("");
         }
 
-        public string ConnectionString { get; set; }
+        public string ConnectionString { get; set; } = "data source=.\\SQLExpress;initial catalog=DisCheckOut;integrated security=True;";
+        //<!--connectionString="data source=182.50.133.111;initial catalog=whopp4km_local;User ID=mahesh_admin;Password=dEshmane@123@db;"-->
         //Action result for ajax call
         [HttpPost]
         public ActionResult GetSubCatgoryByCategoryId(int stateid)
@@ -591,6 +593,7 @@ namespace Nova.Controllers
             var pattern = @"/\[]:|<>+=;'?*";
             return new string(str.Trim().Where(ch => !pattern.Contains(ch)).ToArray());
         }
+        
         #endregion
     }
 }

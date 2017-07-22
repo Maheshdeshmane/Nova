@@ -77,7 +77,7 @@
             <header>
                 @if (Model.Home != null)
                 {
-                    string ImageAddress = string.Format("http://www.whopperbay.com/shop/{0}/{1}", Model.Home.WebBusinessName, Model.Home.HeaderImage);
+                    string ImageAddress = string.Format("http://www.whopperbay.in/shop/{0}/{1}", Model.Home.WebBusinessName, Model.Home.HeaderImage);
                 <div id="lz-headertop" class="lz-headertop" style="background-image: url(@ImageAddress); ">
                     <div class="cbx-header-inner">
                         <div class="container">
@@ -134,7 +134,7 @@
                                                 </div>
                                                 @if (Model.Home.HeaderImage2 != null)
                                             {
-                                                string ImageName = string.Format("http://www.whopperbay.com/shop/{0}/{1}", Model.Home.WebBusinessName, Model.Home.HeaderImage2);
+                                                string ImageName = string.Format("http://www.whopperbay.in/shop/{0}/{1}", Model.Home.WebBusinessName, Model.Home.HeaderImage2);
                                                     <div class="col-sm-5">
                                                         <div class="about-img">
                                                             <img src="@ImageName " alt="@Model.Home.BusinessName-Online Store" />
@@ -224,7 +224,7 @@
                                         string ImageAddress = string.Empty;
                                         foreach (var product in Model.Products)
                                         {
-                                            ImageAddress = string.Format("http://www.whopperbay.com/shop/{0}/{1}/{2}", Model.Home.WebBusinessName, product.FolderName, product.ProductImageName);
+                                            ImageAddress = string.Format("http://www.whopperbay.in/shop/{0}/{1}/{2}", Model.Home.WebBusinessName, product.FolderName, product.ProductImageName);
                                                 <div class="portfolio-item col-xs-12 col-sm-6 col-sm-4" data-groups='["all", "@product.FolderName"]'>
                                                     <div class="single-portfolio">
                                                         <figure class="item-figure">
