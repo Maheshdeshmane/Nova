@@ -407,12 +407,11 @@
                             <div class="row">
 
                                 @if (Model.TeamMembers != null)
-                            {
-                                string ImageAddress;
-                                foreach (var Member in Model.TeamMembers)
                                 {
-                                    ImageAddress = string.Format("http://www.tutorialspoint.com/about/images/{0}", Member.PersonImage);
-
+                                    string ImageAddress;
+                                    foreach (var Member in Model.TeamMembers)
+                                    {                                        
+                                        ImageAddress = string.Format("http://www.whopperbay.in/shop/{0}/{1}", Model.Home.WebBusinessName, Member.PersonImage);
                                         <div class="col-xs-12 col-sm-6 col-md-4 col-lg-3">
                                             <div class="cbx-single-team text-center">
                                                 <div class="flip-container" ontouchstart="this.classList.toggle('hover');">
