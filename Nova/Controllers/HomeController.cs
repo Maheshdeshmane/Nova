@@ -355,6 +355,9 @@ namespace Nova.Controllers
                     onlineShopHome.ShopContactTagLine = reader["ShopContactTagLine"] != System.DBNull.Value ? (string)reader["ShopContactTagLine"] : string.Empty;
                     onlineShopHome.ShopContactDesc = reader["ShopContactDesc"] != System.DBNull.Value ? (string)reader["ShopContactDesc"] : string.Empty;
                     onlineShopHome.ShopTagSubLine = reader["ShopTagSubLine"] != System.DBNull.Value ? (string)reader["ShopTagSubLine"] : string.Empty;
+                    onlineShopHome.ShopSeoDesc = reader["SEO_Desc"] != System.DBNull.Value ? (string)reader["SEO_Desc"] : string.Empty;
+                    onlineShopHome.ShopSeoKeyword = reader["SEO_KEYWORD"] != System.DBNull.Value ? (string)reader["SEO_KEYWORD"] : string.Empty;
+
                 }
             }
             finally

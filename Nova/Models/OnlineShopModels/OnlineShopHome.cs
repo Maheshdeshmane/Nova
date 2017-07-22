@@ -40,5 +40,8 @@ namespace Nova.Models.OnlineShopModels
         public string ShopContactTagLine { get; set; }
         public string ShopContactDesc { get; set; }
         public string ShopTagSubLine { get; set; }
+        public string ShopSeoDesc { get; set; }
+        public string ShopSeoKeyword { get; set; }
+
     }
 }
